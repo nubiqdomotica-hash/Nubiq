@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 18% 11%; /* Casi negro azulado */
+    --foreground: 210 20% 98%; /* Blanco roto */
+    
+    --card: 220 18% 15%; /* Gris oscuro ligeramente más claro */
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 18% 11%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 210 100% 60%; /* Azul Eléctrico */
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 30 100% 60%; /* Naranja Neón */
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 18% 18%; /* Gris para fondos sutiles */
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    --accent: 220 18% 22%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 18% 25%;
+    --input: 220 18% 25%;
+    --ring: 210 100% 60%;
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 18% 11%;
+    --foreground: 210 20% 98%;
+    --card: 220 18% 15%;
+    --card-foreground: 210 20% 98%;
+    --popover: 220 18% 11%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 210 100% 60%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 30 100% 60%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 220 18% 18%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 220 18% 22%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 18% 25%;
+    --input: 220 18% 25%;
+    --ring: 210 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    @apply font-semibold;
+  }
+}
+
+/* Add Poppins and Inter fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
