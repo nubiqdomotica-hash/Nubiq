@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lightbulb, Thermometer, Wind, Lock, Video, Building, Users, Package, Droplets, Zap as EnergyZap, Download, CheckCircle, ChevronDown } from 'lucide-react';
+import { Lightbulb, Thermometer, Wind, Lock, Video, Building, Users, Package, Droplets, Wifi, Zap as EnergyZap, Download, CheckCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -18,7 +18,6 @@ const useIsMobile = () => {
 
   return isMobile;
 };
-
 
 const ServiceDetailCard = ({ icon, title, description, imageUrl, imageAlt, features, imageLeft = false, delay, imageHeightClass = 'h-64 md:h-full' }) => {
   const isMobile = useIsMobile();
@@ -46,14 +45,20 @@ const ServiceDetailCard = ({ icon, title, description, imageUrl, imageAlt, featu
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className={`bg-card/50 border border-white/10 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30`}
+      className="bg-card/50 border border-white/10 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30"
     >
       <div className="grid md:grid-cols-2 items-center">
         <div className={`relative ${imageHeightClass} w-full overflow-hidden ${imageLeft ? 'md:order-first' : 'md:order-last'}`}>
           <img src={imageUrl} alt={imageAlt} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         </div>
-        <div className="p-8" onClick={handleToggle} role={isMobile ? "button" : "article"} tabIndex={isMobile ? 0 : -1} onKeyDown={isMobile ? (e) => e.key === 'Enter' && handleToggle() : undefined}>
+        <div
+          className="p-8"
+          onClick={handleToggle}
+          role={isMobile ? 'button' : 'article'}
+          tabIndex={isMobile ? 0 : -1}
+          onKeyDown={isMobile ? (e) => e.key === 'Enter' && handleToggle() : undefined}
+        >
           <div className="flex items-center mb-4">
             <div className="bg-primary/80 p-3 rounded-full inline-block mr-4 backdrop-blur-sm shadow-md text-primary-foreground">
               {icon}
@@ -61,16 +66,16 @@ const ServiceDetailCard = ({ icon, title, description, imageUrl, imageAlt, featu
             <h3 className="text-2xl font-bold">{title}</h3>
           </div>
           <p className="text-foreground/70">{description}</p>
-          
+
           <AnimatePresence>
             {(isExpanded || !isMobile) && (
               <motion.div
                 key="features"
-                initial={isMobile ? "collapsed" : "expanded"}
+                initial={isMobile ? 'collapsed' : 'expanded'}
                 animate="expanded"
                 exit="collapsed"
                 variants={contentVariants}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
                 className="overflow-hidden"
               >
                 <ul className="space-y-3 md:mt-6">
@@ -128,14 +133,14 @@ const ServicesPage = () => {
         "Control de intensidad y color desde tu celular o con la voz.",
         "Creación de escenas personalizadas para cualquier ocasión.",
         "Programación de encendido y apagado para simular presencia y ahorrar energía.",
-        "Sensores que encienden luces automáticamente segun la hora del dia."
+        "Sensores que encienden luces automáticamente según la hora del día."
       ],
       imageLeft: false
     },
     {
       icon: <Thermometer size={28} />,
       title: "Climatización Eficiente",
-      description: "Disfrutá de la temperatura ideal en todo momento y reducí tu consumo energético. Nuestros sistemas aprenden de tus hábitos para optimizar el confort y el ahorro.",
+      description: "Disfrutá de la temperatura ideal en todo momento y reducÍ tu consumo energético. Nuestros sistemas aprenden de tus hábitos para optimizar el confort y el ahorro.",
       imageUrl: "https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/d83b5b4bb763e728f7e6af090a8bb20d.jpg",
       imageAlt: "Mujer ajustando un termostato inteligente en una pared de una cocina moderna",
       features: [
@@ -153,13 +158,13 @@ const ServicesPage = () => {
       imageUrl: "https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/8669b2d2b91f8cccef8461137b06e78d.jpg",
       imageAlt: "Sala de estar con persiana de bambú en una ventana grande que da a un paisaje verde",
       features: [
-        "Apertura programado para despertar con la luz del sol.",
-        "Control hablando para ajustes rápidos y cómodos.",
+        "Apertura programada para despertar con la luz del sol.",
+        "Control por voz para ajustes rápidos y cómodos.",
         "Cierre automático al anochecer para mayor privacidad.",
         "Protección de tus muebles del sol directo en horas pico."
       ],
       imageLeft: false,
-      imageHeightClass: 'h-48 md:h-72' // Adjusted height for this specific card
+      imageHeightClass: 'h-48 md:h-72'
     },
     {
       icon: <Lock size={28} />,
@@ -198,10 +203,24 @@ const ServicesPage = () => {
       features: [
         "Control del sistema de filtrado y luces de la pileta.",
         "Riego automático basado en el pronóstico del tiempo.",
-        "Desperta con la pileta filtrada",
-        "Encende las luces de la pileta automaticamente al atardecer"
+        "Despertá con la pileta filtrada.",
+        "Encendé las luces de la pileta automáticamente al atardecer."
       ],
       imageLeft: true
+    },
+    {
+      icon: <Wifi size={28} />,
+      title: "Redes WiFi Profesionales",
+      description: "Disfrutá de una conexión estable, rápida y con cobertura total en cada ambiente. Diseñamos redes WiFi de nivel profesional para hogares, oficinas y proyectos de alta exigencia.",
+      imageUrl: "https://images.unsplash.com/photo-1563770660941-10a63607692e?auto=format&fit=crop&w=1200&q=80",
+      imageAlt: "Router WiFi moderno sobre escritorio en un ambiente de trabajo contemporáneo",
+      features: [
+        "Cobertura uniforme en toda la propiedad, sin zonas muertas ni cortes inesperados.",
+        "Instalación de puntos de acceso y equipos de alto rendimiento según la necesidad de cada espacio.",
+        "Redes separadas para familia, invitados y dispositivos inteligentes para mayor seguridad y orden.",
+        "Optimización para streaming, videollamadas, domótica y trabajo remoto sin interrupciones."
+      ],
+      imageLeft: false
     }
   ];
 
@@ -290,7 +309,7 @@ const ServicesPage = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {developerBenefits.map(benefit => <DeveloperBenefitCard key={benefit.title} {...benefit} />)}
+          {developerBenefits.map((benefit) => <DeveloperBenefitCard key={benefit.title} {...benefit} />)}
         </div>
         <div className="text-center">
           <Button asChild size="lg" className="bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-600 hover:to-amber-600 transition-all text-white shadow-lg shadow-secondary/20 hover:shadow-secondary/30 px-8 py-6 text-lg">
@@ -300,7 +319,6 @@ const ServicesPage = () => {
           </Button>
         </div>
       </section>
-
     </motion.div>
   );
 };
