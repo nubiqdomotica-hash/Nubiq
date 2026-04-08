@@ -278,7 +278,6 @@ logger.error = (msg, options) => {
 }
 
 export default defineConfig({
-	base: process.env.VITE_BASE_PATH || '/',
 	customLogger: logger,
 	plugins: [
 		...(isDev ? [inlineEditPlugin(), editModeDevPlugin(), iframeRouteRestorationPlugin(), selectionModePlugin()] : []),
