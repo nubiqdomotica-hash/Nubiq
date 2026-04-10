@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lightbulb, Thermometer, Wind, Lock, Video, Building, Users, Package, Droplets, Wifi, Zap as EnergyZap, Download, CheckCircle, ChevronDown } from 'lucide-react';
+import { Lightbulb, Thermometer, Wind, Lock, Video, Building, Users, Package, Droplets, Wifi, Speaker, Zap as EnergyZap, Download, CheckCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ const useIsMobile = () => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
     };
+
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
@@ -19,13 +20,28 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-const ServiceDetailCard = ({ icon, title, description, imageUrl, imageAlt, features, imageLeft = false, delay, imageHeightClass = 'h-64 md:h-full' }) => {
+const ServiceDetailCard = ({
+  icon,
+  title,
+  description,
+  imageUrl,
+  imageAlt,
+  features,
+  imageLeft = false,
+  delay,
+  imageHeightClass = 'h-64 md:h-full',
+  matchTextHeight = false
+}) => {
   const isMobile = useIsMobile();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut', delay } }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut', delay }
+    }
   };
 
   const contentVariants = {
@@ -39,6 +55,14 @@ const ServiceDetailCard = ({ icon, title, description, imageUrl, imageAlt, featu
     }
   };
 
+  const imageContainerClass = matchTextHeight
+    ? `relative h-52 md:h-auto md:min-h-full w-full overflow-hidden ${imageLeft ? 'md:order-first' : 'md:order-last'}`
+    : `relative ${imageHeightClass} w-full overflow-hidden ${imageLeft ? 'md:order-first' : 'md:order-last'}`;
+
+  const textContainerClass = matchTextHeight
+    ? 'p-8 h-full flex flex-col justify-center'
+    : 'p-8';
+
   return (
     <motion.div
       variants={cardVariants}
@@ -47,13 +71,13 @@ const ServiceDetailCard = ({ icon, title, description, imageUrl, imageAlt, featu
       viewport={{ once: true, amount: 0.2 }}
       className="bg-card/50 border border-white/10 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30"
     >
-      <div className="grid md:grid-cols-2 items-center">
-        <div className={`relative ${imageHeightClass} w-full overflow-hidden ${imageLeft ? 'md:order-first' : 'md:order-last'}`}>
+      <div className={`grid md:grid-cols-2 ${matchTextHeight ? 'items-stretch' : 'items-center'}`}>
+        <div className={imageContainerClass}>
           <img src={imageUrl} alt={imageAlt} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         </div>
         <div
-          className="p-8"
+          className={textContainerClass}
           onClick={handleToggle}
           role={isMobile ? 'button' : 'article'}
           tabIndex={isMobile ? 0 : -1}
@@ -125,113 +149,150 @@ const ServicesPage = () => {
   const services = [
     {
       icon: <Lightbulb size={28} />,
-      title: "Iluminación Inteligente",
-      description: "Transformá la atmósfera de tus espacios con un control total sobre la luz. Creá ambientes perfectos para cada momento, desde una cena romántica hasta una noche de películas.",
-      imageUrl: "https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/950d85665435cc140d4842f067dfe206.webp",
-      imageAlt: "Terraza moderna al atardecer con iluminación ambiental y muebles de exterior",
+      title: 'Iluminación Inteligente',
+      description: 'Transformá la atmósfera de tus espacios con un control total sobre la luz. Creá ambientes perfectos para cada momento, desde una cena romántica hasta una noche de películas.',
+      imageUrl: 'https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/950d85665435cc140d4842f067dfe206.webp',
+      imageAlt: 'Terraza moderna al atardecer con iluminación ambiental y muebles de exterior',
       features: [
-        "Control de intensidad y color desde tu celular o con la voz.",
-        "Creación de escenas personalizadas para cualquier ocasión.",
-        "Programación de encendido y apagado para simular presencia y ahorrar energía.",
-        "Sensores que encienden luces automáticamente según la hora del día."
+        'Control de intensidad y color desde tu celular o con la voz.',
+        'Creación de escenas personalizadas para cualquier ocasión.',
+        'Programación de encendido y apagado para simular presencia y ahorrar energía.',
+        'Sensores que encienden luces automáticamente según la hora del día.'
       ],
       imageLeft: false
     },
     {
       icon: <Thermometer size={28} />,
-      title: "Climatización Eficiente",
-      description: "Disfrutá de la temperatura ideal en todo momento y reducÍ tu consumo energético. Nuestros sistemas aprenden de tus hábitos para optimizar el confort y el ahorro.",
-      imageUrl: "https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/d83b5b4bb763e728f7e6af090a8bb20d.jpg",
-      imageAlt: "Mujer ajustando un termostato inteligente en una pared de una cocina moderna",
+      title: 'Climatización Eficiente',
+      description: 'Disfrutá de la temperatura ideal en todo momento y reducí tu consumo energético. Nuestros sistemas aprenden de tus hábitos para optimizar el confort y el ahorro.',
+      imageUrl: 'https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/d83b5b4bb763e728f7e6af090a8bb20d.jpg',
+      imageAlt: 'Mujer ajustando un termostato inteligente en una pared de una cocina moderna',
       features: [
-        "Termostatos inteligentes que se adaptan a tu rutina diaria.",
-        "Control remoto de aires acondicionados y calefacción.",
+        'Termostatos inteligentes que se adaptan a tu rutina diaria.',
+        'Control remoto de aires acondicionados y calefacción.',
         "Modo 'Ausente' para maximizar el ahorro cuando no estás en casa.",
-        "Integración con sensores de ventanas para evitar desperdicio de energía."
+        'Integración con sensores de ventanas para evitar desperdicio de energía.'
       ],
       imageLeft: true
     },
     {
       icon: <Wind size={28} />,
-      title: "Persianas y Cortinas",
-      description: "Gestioná la luz natural y tu privacidad con un solo toque. Automatizá tus cortinas para que trabajen para vos, mejorando la seguridad y la eficiencia energética.",
-      imageUrl: "https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/8669b2d2b91f8cccef8461137b06e78d.jpg",
-      imageAlt: "Sala de estar con persiana de bambú en una ventana grande que da a un paisaje verde",
+      title: 'Persianas y Cortinas',
+      description: 'Gestioná la luz natural y tu privacidad con un solo toque. Automatizá tus cortinas para que trabajen para vos, mejorando la seguridad y la eficiencia energética.',
+      imageUrl: 'https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/8669b2d2b91f8cccef8461137b06e78d.jpg',
+      imageAlt: 'Sala de estar con persiana de bambú en una ventana grande que da a un paisaje verde',
       features: [
-        "Apertura programada para despertar con la luz del sol.",
-        "Control por voz para ajustes rápidos y cómodos.",
-        "Cierre automático al anochecer para mayor privacidad.",
-        "Protección de tus muebles del sol directo en horas pico."
+        'Apertura programada para despertar con la luz del sol.',
+        'Control por voz para ajustes rápidos y cómodos.',
+        'Cierre automático al anochecer para mayor privacidad.',
+        'Protección de tus muebles del sol directo en horas pico.'
       ],
       imageLeft: false,
       imageHeightClass: 'h-48 md:h-72'
     },
     {
       icon: <Lock size={28} />,
-      title: "Seguridad y Acceso",
-      description: "Sentite seguro sabiendo que tu hogar está protegido. Controlá quién entra y sale, y recibí alertas instantáneas ante cualquier actividad sospechosa.",
-      imageUrl: "https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/c31ada68f2030aa3f812b1ad3d27045a.webp",
-      imageAlt: "Cerradura inteligente con teclado numérico y lector de huellas en una puerta de madera oscura",
+      title: 'Seguridad y Acceso',
+      description: 'Sentite seguro sabiendo que tu hogar está protegido. Controlá quién entra y sale, y recibí alertas instantáneas ante cualquier actividad sospechosa.',
+      imageUrl: 'https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/c31ada68f2030aa3f812b1ad3d27045a.webp',
+      imageAlt: 'Cerradura inteligente con teclado numérico y lector de huellas en una puerta de madera oscura',
       features: [
-        "Cerraduras inteligentes con apertura por código, huella o celular. Olvidate de las llaves.",
-        "Creación de accesos temporales para visitas o personal de servicio.",
-        "Sensores de apertura en puertas y ventanas con notificaciones en tiempo real.",
-        "Integración con cámaras para verificar quién está en la puerta."
+        'Cerraduras inteligentes con apertura por código, huella o celular. Olvidate de las llaves.',
+        'Creación de accesos temporales para visitas o personal de servicio.',
+        'Sensores de apertura en puertas y ventanas con notificaciones en tiempo real.',
+        'Integración con cámaras para verificar quién está en la puerta.'
       ],
       imageLeft: true
     },
     {
       icon: <Video size={28} />,
-      title: "Vigilancia Inteligente",
-      description: "Mantené un ojo en tu propiedad desde cualquier parte del mundo. Nuestras cámaras inteligentes te ofrecen tranquilidad con video de alta calidad y funciones avanzadas.",
-      imageUrl: "https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/792a7c17ea108834f5fe2c0c5f9bfb9c.png",
-      imageAlt: "Tres cámaras de seguridad blancas montadas en la esquina de un edificio moderno",
+      title: 'Vigilancia Inteligente',
+      description: 'Mantené un ojo en tu propiedad desde cualquier parte del mundo. Nuestras cámaras inteligentes te ofrecen tranquilidad con video de alta calidad y funciones avanzadas.',
+      imageUrl: 'https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/792a7c17ea108834f5fe2c0c5f9bfb9c.png',
+      imageAlt: 'Tres cámaras de seguridad blancas montadas en la esquina de un edificio moderno',
       features: [
-        "Visualización en vivo y grabaciones en la nube.",
-        "Detección inteligente de personas, vehículos y paquetes.",
-        "Comunicación de audio bidireccional para hablar con quien esté allí.",
-        "Zonas de actividad personalizables para reducir falsas alarmas."
+        'Visualización en vivo y grabaciones en la nube.',
+        'Detección inteligente de personas, vehículos y paquetes.',
+        'Comunicación de audio bidireccional para hablar con quien esté allí.',
+        'Zonas de actividad personalizables para reducir falsas alarmas.'
       ],
       imageLeft: false
     },
     {
       icon: <Droplets size={28} />,
-      title: "Pileta y Riego",
-      description: "Olvidate del mantenimiento manual. Automatizá el cuidado de tu pileta y jardín para que siempre luzcan impecables, ahorrando agua y esfuerzo.",
-      imageUrl: "https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/65d24b382c8cbca974997fadc00545e7.png",
-      imageAlt: "Jardín con sistema de riego y pileta automatizada",
+      title: 'Pileta y Riego',
+      description: 'Olvidate del mantenimiento manual. Automatizá el cuidado de tu pileta y jardín para que siempre luzcan impecables, ahorrando agua y esfuerzo.',
+      imageUrl: 'https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/65d24b382c8cbca974997fadc00545e7.png',
+      imageAlt: 'Jardín con sistema de riego y pileta automatizada',
       features: [
-        "Control del sistema de filtrado y luces de la pileta.",
-        "Riego automático basado en el pronóstico del tiempo.",
-        "Despertá con la pileta filtrada.",
-        "Encendé las luces de la pileta automáticamente al atardecer."
+        'Control del sistema de filtrado y luces de la pileta.',
+        'Riego automático basado en el pronóstico del tiempo.',
+        'Despertá con la pileta filtrada.',
+        'Encendé las luces de la pileta automáticamente al atardecer.'
       ],
       imageLeft: true
     },
     {
       icon: <Wifi size={28} />,
-      title: "Redes WiFi Profesionales",
-      description: "Disfrutá de una conexión estable, rápida y con cobertura total en cada ambiente. Diseñamos redes WiFi de nivel profesional para hogares, oficinas y proyectos de alta exigencia.",
-      imageUrl: "https://images.unsplash.com/photo-1563770660941-10a63607692e?auto=format&fit=crop&w=1200&q=80",
-      imageAlt: "Router WiFi moderno sobre escritorio en un ambiente de trabajo contemporáneo",
+      title: 'Redes WiFi Profesionales',
+      description: 'Disfrutá de una conexión estable, rápida y con cobertura total en cada ambiente. Diseñamos redes WiFi de nivel profesional para hogares, oficinas y proyectos de alta exigencia.',
+      imageUrl: '/redes-wifi-profesionales.jpg',
+      imageAlt: 'Rack de red profesional con cableado organizado y equipamiento de conectividad',
       features: [
-        "Cobertura uniforme en toda la propiedad, sin zonas muertas ni cortes inesperados.",
-        "Instalación de puntos de acceso y equipos de alto rendimiento según la necesidad de cada espacio.",
-        "Redes separadas para familia, invitados y dispositivos inteligentes para mayor seguridad y orden.",
-        "Optimización para streaming, videollamadas, domótica y trabajo remoto sin interrupciones."
+        'Cobertura uniforme en toda la propiedad, sin zonas muertas ni cortes inesperados.',
+        'Instalación de puntos de acceso y equipos de alto rendimiento según la necesidad de cada espacio.',
+        'Redes separadas para familia, invitados y dispositivos inteligentes para mayor seguridad y orden.',
+        'Optimización para streaming, videollamadas, domótica y trabajo remoto sin interrupciones.'
       ],
-      imageLeft: false
+      imageLeft: false,
+      imageHeightClass: 'h-52 md:h-[30rem]'
+    },
+    {
+      icon: <Speaker size={28} />,
+      title: 'Sistema de Audio',
+      description: 'Convertí cada ambiente en una experiencia sonora de primer nivel. Diseñamos sistemas de audio a medida para hogares, con sonido envolvente, distribución multiambiente y configuraciones de cine en casa con terminaciones premium.',
+      imageUrl: '/sistema-audio.jpg',
+      imageAlt: 'Sala de cine en casa con sistema de audio envolvente y parlantes distribuidos',
+      features: [
+        'Sistemas de sonido envolvente para livings, salas multimedia y espacios de entretenimiento.',
+        'Configuraciones de nivel cine para disfrutar películas, recitales y videojuegos con máxima inmersión.',
+        'Instalación prolija de parlantes, subwoofers y amplificación con integración estética al hogar.',
+        'Control simple desde el celular, automatizaciones y escenas personalizadas para cine, música o reuniones.'
+      ],
+      imageLeft: true,
+      imageHeightClass: 'h-52 md:h-full',
+      matchTextHeight: true
     }
   ];
 
   const developerBenefits = [
-    { icon: <Building size={24} />, title: "Diferenciador de mercado", description: "Incorporar domótica en viviendas nuevas hace que tus proyectos se destaquen ante compradores exigentes. Un hogar inteligente en Córdoba ofrece un plus competitivo en ventas.", delay: 0.1 },
-    { icon: <Package size={24} />, title: "Integración simplificada", description: "Instalamos sistemas integrales durante la obra. Coordinamos con arquitectos e ingenieros, asegurando cableados y conexiones ocultas para un acabado profesional.", delay: 0.2 },
-    { icon: <Users size={24} />, title: "Experiencia del cliente", description: "Entregamos la casa lista para usar. Brindamos capacitación al propietario y documentación de uso. Elevamos la satisfacción del cliente final, lo que mejora la reputación de tu empresa.", delay: 0.3 },
-    { icon: <EnergyZap size={24} />, title: "Eficiencia y ahorro energético", description: "Ofrecer sistemas de luz y climatización automatizados permite hogares más sustentables. Los compradores valoran viviendas que consumen menos energía y cuidan el medio ambiente.", delay: 0.4 }
+    {
+      icon: <Building size={24} />,
+      title: 'Diferenciador de mercado',
+      description: 'Incorporar domótica en viviendas nuevas hace que tus proyectos se destaquen ante compradores exigentes. Un hogar inteligente en Córdoba ofrece un plus competitivo en ventas.',
+      delay: 0.1
+    },
+    {
+      icon: <Package size={24} />,
+      title: 'Integración simplificada',
+      description: 'Instalamos sistemas integrales durante la obra. Coordinamos con arquitectos e ingenieros, asegurando cableados y conexiones ocultas para un acabado profesional.',
+      delay: 0.2
+    },
+    {
+      icon: <Users size={24} />,
+      title: 'Experiencia del cliente',
+      description: 'Entregamos la casa lista para usar. Brindamos capacitación al propietario y documentación de uso. Elevamos la satisfacción del cliente final, lo que mejora la reputación de tu empresa.',
+      delay: 0.3
+    },
+    {
+      icon: <EnergyZap size={24} />,
+      title: 'Eficiencia y ahorro energético',
+      description: 'Ofrecer sistemas de luz y climatización automatizados permite hogares más sustentables. Los compradores valoran viviendas que consumen menos energía y cuidan el medio ambiente.',
+      delay: 0.4
+    }
   ];
 
-  const brochureUrl = "https://whgiftfytqyqvyuijwgu.supabase.co/storage/v1/object/public/brochure/Nubiq-Domotica-Brochure.pdf";
+  const brochureUrl = 'https://whgiftfytqyqvyuijwgu.supabase.co/storage/v1/object/public/brochure/Nubiq-Domotica-Brochure.pdf';
   const handleDownload = () => { window.open(brochureUrl, '_blank'); };
 
   return (
