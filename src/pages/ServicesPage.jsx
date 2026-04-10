@@ -292,7 +292,7 @@ const ServicesPage = () => {
     }
   ];
 
-  const brochureUrl = 'https://whgiftfytqyqvyuijwgu.supabase.co/storage/v1/object/public/brochure/Nubiq-Domotica-Brochure.pdf';
+  const brochureUrl = '/brochure-nubiq.pdf';
   const handleDownload = () => { window.open(brochureUrl, '_blank'); };
 
   return (
@@ -340,7 +340,7 @@ const ServicesPage = () => {
         className="text-center"
       >
         <div className="border-t border-b border-white/10 py-8 px-4 flex flex-col sm:flex-row justify-center items-center gap-6 bg-card/30 rounded-lg">
-          <h3 className="text-xl font-semibold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">¿Querés ver todos los detalles?</h3>
+          <h3 className="text-xl font-semibold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">Descarga nuestro brochure para compartir!</h3>
           <Button onClick={handleDownload} variant="outline" className="bg-transparent border-primary text-primary hover:bg-primary/10 hover:text-white transition-colors">
             <Download className="mr-2 h-4 w-4" />
             Descargar Brochure Completo
