@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Smartphone, Zap, Shield, Clock, Leaf, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -56,6 +57,69 @@ const WhatIsDomoticsPage = () => {
       transition={{ duration: 0.5 }}
       className="container mx-auto px-4 py-8"
     >
+      <Helmet>
+        <title>¿Qué es la Domótica? Guía Completa 2025 | Nubiq Argentina</title>
+        <meta name="description" content="Descubrí qué es la domótica, cómo funciona y cuáles son sus beneficios. Control por voz, ahorro energético, seguridad y más. Guía gratuita de Nubiq Córdoba." />
+        <meta property="og:title" content="¿Qué es la Domótica? Guía Completa | Nubiq Argentina" />
+        <meta property="og:description" content="Descubrí qué es la domótica, cómo funciona y cuáles son sus beneficios. Control por voz, ahorro energético, seguridad y más." />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/que-es-domotica" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Qué es la domótica?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "La domótica es la tecnología que permite automatizar y controlar de forma remota los sistemas de una casa u oficina: luces, clima, persianas, cerraduras, cámaras y más. Se controla desde el celular o con la voz, sin necesidad de obras."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Necesito hacer obras para instalar domótica?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. En Nubiq instalamos sistemas de domótica sin obras ni reformas estructurales. Los dispositivos se conectan a tu WiFi existente y funcionan en tu casa o departamento actual."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Cuánto cuesta instalar domótica en Argentina?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "El costo varía según el tamaño del espacio y los sistemas a automatizar. En Nubiq ofrecemos asesoramiento gratuito y presupuestos personalizados. Contactanos para una consulta sin compromiso."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué plataforma usan para la domótica?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Usamos Home Assistant, la plataforma de automatización del hogar más popular del mundo. Es de código abierto, no requiere suscripciones y es compatible con miles de dispositivos de distintas marcas."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Dónde instalan domótica?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nubiq realiza instalaciones de domótica en Córdoba, Argentina. Trabajamos en hogares, departamentos, oficinas y proyectos comerciales."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Puedo controlar mi casa desde el celular estando en otro lugar?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí. Con la domótica de Nubiq podés controlar luces, clima, cámaras, cerraduras y más desde cualquier parte del mundo usando tu celular con conexión a internet."
+                }
+              }
+            ]
+          }
+        `}</script>
+      </Helmet>
       <section className="text-center mb-12 md:mb-16">
         <motion.h1 
           initial={{ y: -20, opacity: 0 }}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Clock } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
@@ -12,13 +13,20 @@ Hola Nubiq, soy [Nombre] de [Barrio/Ciudad]. Quiero domotizar mi [casa/departame
   const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      exit={{ opacity: 0 }} 
-      transition={{ duration: 0.5 }} 
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
       className="py-12 md:py-20"
     >
+      <Helmet>
+        <title>Contacto | Pedí tu Presupuesto de Domótica Gratis | Nubiq Córdoba</title>
+        <meta name="description" content="Contactanos por WhatsApp o email. Asesoramiento gratuito y sin compromiso. Instalación de domótica en hogares y oficinas en Córdoba, Argentina." />
+        <meta property="og:title" content="Contacto | Presupuesto Domótica Gratis | Nubiq Córdoba" />
+        <meta property="og:description" content="Contactanos por WhatsApp o email. Asesoramiento gratuito y sin compromiso. Instalación de domótica en Córdoba, Argentina." />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/contacto" />
+      </Helmet>
       <section className="text-center mb-12 md:mb-16">
         <motion.div 
           initial={{ y: -30, opacity: 0 }} 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Target, Lightbulb, ShieldCheck, HeartHandshake as Handshake, BrainCircuit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,6 +32,13 @@ const AboutUsPage = () => {
       transition={{ duration: 0.5 }}
       className="py-8 space-y-20 md:space-y-28"
     >
+      <Helmet>
+        <title>Quiénes Somos | Nubiq Domótica Córdoba, Argentina</title>
+        <meta name="description" content="Somos Lucas y Franco, co-fundadores de Nubiq. Expertos en domótica residencial y comercial con Home Assistant en Córdoba, Argentina. Conocé nuestra misión y valores." />
+        <meta property="og:title" content="Quiénes Somos | Nubiq Domótica Córdoba" />
+        <meta property="og:description" content="Expertos en domótica residencial y comercial con Home Assistant en Córdoba, Argentina. Conocé nuestra misión y valores." />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/nosotros" />
+      </Helmet>
       <section className="text-center">
         <motion.h1
           initial={{ y: -20, opacity: 0 }}

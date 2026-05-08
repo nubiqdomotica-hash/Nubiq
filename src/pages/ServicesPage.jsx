@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lightbulb, Thermometer, Wind, Lock, Video, Building, Users, Package, Droplets, Wifi, Speaker, Zap as EnergyZap, Download, CheckCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -303,6 +304,13 @@ const ServicesPage = () => {
       transition={{ duration: 0.5 }}
       className="py-8 space-y-20 md:space-y-28"
     >
+      <Helmet>
+        <title>Servicios de Domótica en Córdoba | Iluminación, Clima, Seguridad | Nubiq</title>
+        <meta name="description" content="Iluminación inteligente, climatización, persianas automatizadas, cerraduras, cámaras, riego y audio. Instalación profesional de domótica en Córdoba, Argentina." />
+        <meta property="og:title" content="Servicios de Domótica en Córdoba | Nubiq" />
+        <meta property="og:description" content="Iluminación inteligente, climatización, persianas automatizadas, cerraduras, cámaras, riego y audio. Instalación profesional de domótica en Córdoba, Argentina." />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/servicios" />
+      </Helmet>
       <section className="text-center">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}

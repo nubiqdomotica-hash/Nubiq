@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -95,6 +96,13 @@ const HomePage = () => {
   return <motion.div initial="hidden" animate="visible" exit={{
     opacity: 0
   }} variants={containerVariants} className="space-y-20 md:space-y-28">
+      <Helmet>
+        <title>Nubiq Domótica | Casa Inteligente en Córdoba, Argentina</title>
+        <meta name="description" content="Instalación de domótica sin obras en Córdoba. Controlá luces, clima, persianas, cámaras y más desde tu celular o con la voz. Consultá gratis con Nubiq." />
+        <meta property="og:title" content="Nubiq Domótica | Casa Inteligente en Córdoba, Argentina" />
+        <meta property="og:description" content="Instalación de domótica sin obras en Córdoba. Controlá luces, clima, persianas, cámaras y más desde tu celular o con la voz. Consultá gratis con Nubiq." />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/" />
+      </Helmet>
       <section className="relative pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <motion.div variants={containerVariants} className="text-center md:text-left">
@@ -102,7 +110,7 @@ const HomePage = () => {
               El futuro de tu hogar, <span className="text-primary">hoy</span>.
             </motion.h1>
             <motion.p variants={itemVariants} className="text-lg md:text-xl text-foreground/80 max-w-xl mx-auto md:mx-0 mb-10">
-              Bienvenido a Nubiq Domótica. Convertimos tu lugar en un espacio inteligente, fácil de usar y adaptado a vos. Nos ocupamos de cada detalle para que disfrutes al máximo, mientras la tecnología se encarga del resto.
+              Somos Nubiq Domótica, tu empresa de automatización del hogar en Córdoba, Argentina. Convertimos tu casa u oficina en un espacio inteligente, fácil de usar y adaptado a vos. Nos ocupamos de cada detalle para que disfrutes al máximo, mientras la tecnología se encarga del resto.
             </motion.p>
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-primary/30 transform hover:scale-105 transition-all duration-300 px-8 py-6 text-lg rounded-full">
@@ -173,7 +181,7 @@ const HomePage = () => {
           }} className="md:pr-8">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground text-center md:text-left">La magia de la <span className="text-primary">automatización</span></h2>
               <p className="text-lg text-foreground/80 mb-6 text-center md:text-left">Los dispositivos interactúan y se envían señales entre ellos para funcionar automáticamente, asegurando el máximo confort en tu espacio. La domótica busca interconectar dispositivos para optimizar la eficiencia energética, seguridad y tu bienestar.</p>
-              <p className="text-foreground/70 text-center md:text-left">Imaginá llegar a casa y que las luces se enciendan solas, la temperatura se ajuste a tu gusto y tu música favorita comience a sonar. Que las persianas se cierren automáticamente al anochecer y que cuando despiertes la piscina ya este filtrada. Todo esto y mas es posible con domótica.</p>
+              <p className="text-foreground/70 text-center md:text-left">Imaginá llegar a casa y que las luces se enciendan solas, la temperatura se ajuste a tu gusto y tu música favorita comience a sonar. Que las persianas se cierren automáticamente al anochecer y que cuando despiertes la pileta ya esté filtrada. Todo esto y más es posible con domótica en Córdoba. Usamos Home Assistant, la plataforma de automatización más potente del mundo.</p>
             </motion.div>
           </div>
         </div>
