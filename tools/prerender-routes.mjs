@@ -47,7 +47,7 @@ const routes = [
     title: 'Contacto | Pedí tu Presupuesto de Domótica Gratis | Nubiq Córdoba',
     description: 'Contactanos por WhatsApp o email. Asesoramiento gratuito y sin compromiso. Instalación de domótica en hogares y oficinas en Córdoba, Argentina.',
     h1: 'Contacto - Nubiq Domótica Córdoba',
-    body: 'WhatsApp +54 351 232 6814, email contacto@nubiq.tech. Lunes a Viernes 9 a 18, Sábados 9 a 14. Instalación de domótica en Córdoba, Argentina.'
+    body: 'WhatsApp +54 351 232 6814, email contacto@nubiqdomotica.com.ar. Lunes a Viernes 9 a 18, Sábados 9 a 14. Instalación de domótica en Córdoba, Argentina.'
   },
   {
     path: '/domotica-nueva-cordoba',
@@ -129,7 +129,7 @@ function customizeHtml(baseHtml, route) {
   );
 
   // Reemplazar contenido del <noscript> con info específica de la ruta
-  const noscriptContent = `<noscript><h1>${escapeHtml(route.h1)}</h1><p>${escapeHtml(route.body)}</p><p>Contactanos por WhatsApp al +54 351 232 6814 o por email a contacto@nubiq.tech.</p></noscript>`;
+  const noscriptContent = `<noscript><h1>${escapeHtml(route.h1)}</h1><p>${escapeHtml(route.body)}</p><p>Contactanos por WhatsApp al +54 351 232 6814 o por email a contacto@nubiqdomotica.com.ar.</p></noscript>`;
   html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscriptContent);
 
   return html;

@@ -68,7 +68,7 @@ Hola Nubiq, soy [Nombre] de [Barrio/Ciudad]. Quiero domotizar mi [casa/departame
               <Mail className="text-secondary flex-shrink-0" size={24} />
               <div>
                 <p className="font-semibold text-foreground">Email:</p>
-                <a href="mailto:contacto@nubiq.tech" className="text-lg hover:text-primary transition-colors">contacto@nubiq.tech</a>
+                <a href="mailto:contacto@nubiqdomotica.com.ar" className="text-lg hover:text-primary transition-colors">contacto@nubiqdomotica.com.ar</a>
               </div>
             </div>
             <div className="flex items-center space-x-4">

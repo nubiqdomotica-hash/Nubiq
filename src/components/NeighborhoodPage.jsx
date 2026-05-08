@@ -36,7 +36,7 @@ const NeighborhoodPage = ({
     description,
     url,
     telephone: '+54-351-232-6814',
-    email: 'contacto@nubiq.tech',
+    email: 'contacto@nubiqdomotica.com.ar',
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
