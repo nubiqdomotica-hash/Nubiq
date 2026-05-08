@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Smartphone, Zap, Shield, Clock, Leaf, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import SeoBreadcrumb from '@/components/SeoBreadcrumb';
 
 const BenefitCard = ({ icon, title, description, delay }) => (
   <motion.div
@@ -36,7 +37,7 @@ const ExampleCard = ({ title, description, imageSrc, imageAlt, delay }) => (
     className="bg-card border border-white/10 rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-secondary/20 transition-shadow duration-300"
   >
     <div className="relative h-48 w-full">
-      <img  src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" />
+      <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" loading="lazy" decoding="async" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
     </div>
     <div className="p-6 flex-grow flex flex-col">
@@ -120,6 +121,7 @@ const WhatIsDomoticsPage = () => {
           }
         `}</script>
       </Helmet>
+      <SeoBreadcrumb items={[{ name: '¿Qué es la Domótica?', path: '/que-es-domotica' }]} />
       <section className="text-center mb-12 md:mb-16">
         <motion.h1 
           initial={{ y: -20, opacity: 0 }}
@@ -165,7 +167,7 @@ const WhatIsDomoticsPage = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="rounded-xl overflow-hidden shadow-2xl border border-white/10 order-1 md:order-2"
           >
-            <img  alt="Casa inteligente moderna con iconos de domótica flotando alrededor" className="w-full h-auto object-cover aspect-video opacity-90" src="https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/d67af90fd2c33db20c69ef7e9e4dc498.png" />
+            <img alt="Casa inteligente moderna en Córdoba con iconos de domótica: control por voz, automatización y casa conectada" className="w-full h-auto object-cover aspect-video opacity-90" src="https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/d67af90fd2c33db20c69ef7e9e4dc498.png" loading="lazy" decoding="async" />
           </motion.div>
         </div>
       </section>

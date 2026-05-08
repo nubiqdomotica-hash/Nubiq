@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Target, Lightbulb, ShieldCheck, HeartHandshake as Handshake, BrainCircuit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import SeoBreadcrumb from '@/components/SeoBreadcrumb';
 
 const ValueCard = ({ icon, title, description, delay }) => (
   <motion.div
@@ -39,6 +40,7 @@ const AboutUsPage = () => {
         <meta property="og:description" content="Expertos en domótica residencial y comercial con Home Assistant en Córdoba, Argentina. Conocé nuestra misión y valores." />
         <link rel="canonical" href="https://nubiqdomotica.com.ar/nosotros" />
       </Helmet>
+      <SeoBreadcrumb items={[{ name: 'Nosotros', path: '/nosotros' }]} />
       <section className="text-center">
         <motion.h1
           initial={{ y: -20, opacity: 0 }}
@@ -69,8 +71,10 @@ const AboutUsPage = () => {
           <div className="relative h-80 md:h-96 overflow-hidden">
             <img
               className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              alt="Lucas Carranza y Franco Oppido, co-fundadores de Nubiq"
+              alt="Lucas Carranza y Franco Oppido, co-fundadores de Nubiq Domótica en Córdoba"
               src={founderImage}
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>

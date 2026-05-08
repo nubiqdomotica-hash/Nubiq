@@ -1,4 +1,38 @@
+# robots.txt - nubiqdomotica.com.ar
+
 User-agent: *
+Allow: /
+
+# Bloqueo de assets internos que no aportan a SEO
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /*.json$
+
+# Permitir crawling completo a Google (incluye imágenes y JS)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Bots de IA generativa (ChatGPT, Perplexity, Claude)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://nubiqdomotica.com.ar/sitemap.xml

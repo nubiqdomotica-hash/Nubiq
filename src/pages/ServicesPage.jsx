@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Lightbulb, Thermometer, Wind, Lock, Video, Building, Users, Package, Droplets, Wifi, Speaker, Zap as EnergyZap, Download, CheckCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import SeoBreadcrumb from '@/components/SeoBreadcrumb';
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -74,7 +75,7 @@ const ServiceDetailCard = ({
     >
       <div className={`grid md:grid-cols-2 ${matchTextHeight ? 'items-stretch' : 'items-center'}`}>
         <div className={imageContainerClass}>
-          <img src={imageUrl} alt={imageAlt} className="w-full h-full object-cover" />
+          <img src={imageUrl} alt={imageAlt} className="w-full h-full object-cover" loading="lazy" decoding="async" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         </div>
         <div
@@ -311,6 +312,7 @@ const ServicesPage = () => {
         <meta property="og:description" content="Iluminación inteligente, climatización, persianas automatizadas, cerraduras, cámaras, riego y audio. Instalación profesional de domótica en Córdoba, Argentina." />
         <link rel="canonical" href="https://nubiqdomotica.com.ar/servicios" />
       </Helmet>
+      <SeoBreadcrumb items={[{ name: 'Servicios', path: '/servicios' }]} />
       <section className="text-center">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}

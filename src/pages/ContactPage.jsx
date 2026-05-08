@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Clock } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
+import SeoBreadcrumb from '@/components/SeoBreadcrumb';
 
 const ContactPage = () => {
   const whatsAppNumber = "543512326814";
@@ -27,6 +28,7 @@ Hola Nubiq, soy [Nombre] de [Barrio/Ciudad]. Quiero domotizar mi [casa/departame
         <meta property="og:description" content="Contactanos por WhatsApp o email. Asesoramiento gratuito y sin compromiso. Instalación de domótica en Córdoba, Argentina." />
         <link rel="canonical" href="https://nubiqdomotica.com.ar/contacto" />
       </Helmet>
+      <SeoBreadcrumb items={[{ name: 'Contacto', path: '/contacto' }]} />
       <section className="text-center mb-12 md:mb-16">
         <motion.div 
           initial={{ y: -30, opacity: 0 }} 

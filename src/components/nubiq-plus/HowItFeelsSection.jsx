@@ -76,10 +76,12 @@ const HowItFeelsSection = () => {
             transition={{ duration: 0.8 }}
             className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl"
           >
-            <img 
-              src="https://images.unsplash.com/photo-1701170846728-4e7c1b15c4ef" 
-              alt="Sala moderna de lujo con vista a la ciudad, silla azul y plantas"
+            <img
+              src="https://images.unsplash.com/photo-1701170846728-4e7c1b15c4ef"
+              alt="Sala moderna de lujo con domótica premium Nubiq+ LifeSmart, vista a la ciudad de Córdoba"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
           </motion.div>

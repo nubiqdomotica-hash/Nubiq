@@ -19,10 +19,12 @@ const ProductCard = ({ product, onClick }) => {
     >
       <div className="relative h-48 overflow-hidden bg-gray-200">
         {!imgError ? (
-          <img 
-            src={product.image} 
+          <img
+            src={product.image}
             alt={product.alt}
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
             onError={() => {
               console.error(`Error loading image for ${product.name}`);
               setImgError(true);
@@ -73,10 +75,12 @@ const ProductModal = ({ product, isOpen, onClose }) => {
             <div className="bg-card border border-white/10 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <div className="relative h-64 bg-gray-200">
                  {!imgError ? (
-                  <img 
-                    src={product.image} 
+                  <img
+                    src={product.image}
                     alt={product.alt}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                     onError={() => setImgError(true)}
                   />
                 ) : (

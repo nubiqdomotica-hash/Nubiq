@@ -16,10 +16,12 @@ const HeroSection = () => {
     <>
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1532971728-03b172590d0e" 
-            alt="Sala de estar moderna con domótica premium" 
+          <img
+            src="https://images.unsplash.com/photo-1532971728-03b172590d0e"
+            alt="Sala de estar moderna con domótica premium LifeSmart instalada por Nubiq+ en Córdoba"
             className="w-full h-full object-cover"
+            fetchpriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
         </div>
@@ -32,10 +34,12 @@ const HeroSection = () => {
             className="mb-8 flex flex-col items-center justify-center"
           >
             <div className="bg-white/95 rounded-xl px-6 py-3 mb-6 shadow-xl inline-block transform hover:scale-105 transition-transform duration-300">
-               <img 
-                 src="https://images.unsplash.com/photo-1608377205619-03a0b4c4e270" 
-                 alt="Logo LifeSmart - Línea premium de domótica" 
+               <img
+                 src="https://images.unsplash.com/photo-1608377205619-03a0b4c4e270"
+                 alt="Logo LifeSmart - Línea premium de domótica distribuida por Nubiq en Córdoba"
                  className="h-12 w-auto object-contain"
+                 loading="lazy"
+                 decoding="async"
                />
             </div>
             

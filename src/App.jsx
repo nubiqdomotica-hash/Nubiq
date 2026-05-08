@@ -7,6 +7,10 @@ import NubiqPlusPage from '@/pages/NubiqPlusPage';
 import WhatIsDomoticsPage from '@/pages/WhatIsDomoticsPage';
 import AboutUsPage from '@/pages/AboutUsPage';
 import ContactPage from '@/pages/ContactPage';
+import NuevaCordobaPage from '@/pages/zonas/NuevaCordobaPage';
+import CerroDeLasRosasPage from '@/pages/zonas/CerroDeLasRosasPage';
+import VillaAllendePage from '@/pages/zonas/VillaAllendePage';
+import ValleEscondidoPage from '@/pages/zonas/ValleEscondidoPage';
 import { Toaster } from '@/components/ui/toaster';
 import ScrollToTop from '@/components/ScrollToTop';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
@@ -24,6 +28,10 @@ function App() {
           <Route path="/que-es-domotica" element={<WhatIsDomoticsPage />} />
           <Route path="/nosotros" element={<AboutUsPage />} />
           <Route path="/contacto" element={<ContactPage />} />
+          <Route path="/domotica-nueva-cordoba" element={<NuevaCordobaPage />} />
+          <Route path="/domotica-cerro-de-las-rosas" element={<CerroDeLasRosasPage />} />
+          <Route path="/domotica-villa-allende" element={<VillaAllendePage />} />
+          <Route path="/domotica-valle-escondido" element={<ValleEscondidoPage />} />
         </Routes>
       </Layout>
       <Toaster />

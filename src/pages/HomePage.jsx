@@ -97,20 +97,20 @@ const HomePage = () => {
     opacity: 0
   }} variants={containerVariants} className="space-y-20 md:space-y-28">
       <Helmet>
-        <title>Nubiq Domótica | Casa Inteligente en Córdoba, Argentina</title>
-        <meta name="description" content="Instalación de domótica sin obras en Córdoba. Controlá luces, clima, persianas, cámaras y más desde tu celular o con la voz. Consultá gratis con Nubiq." />
-        <meta property="og:title" content="Nubiq Domótica | Casa Inteligente en Córdoba, Argentina" />
-        <meta property="og:description" content="Instalación de domótica sin obras en Córdoba. Controlá luces, clima, persianas, cámaras y más desde tu celular o con la voz. Consultá gratis con Nubiq." />
+        <title>Nubiq Domótica Córdoba | Casa Inteligente y Automatización del Hogar</title>
+        <meta name="description" content="Nubiq es la empresa de domótica en Córdoba. Instalamos casas inteligentes sin obras: luces, clima, persianas, cámaras y cerraduras desde el celular o por voz." />
+        <meta property="og:title" content="Nubiq Domótica Córdoba | Casa Inteligente y Automatización del Hogar" />
+        <meta property="og:description" content="Nubiq es la empresa de domótica en Córdoba. Instalamos casas inteligentes sin obras: luces, clima, persianas, cámaras y cerraduras desde el celular o por voz." />
         <link rel="canonical" href="https://nubiqdomotica.com.ar/" />
       </Helmet>
       <section className="relative pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <motion.div variants={containerVariants} className="text-center md:text-left">
             <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 text-foreground leading-tight">
-              El futuro de tu hogar, <span className="text-primary">hoy</span>.
+              Domótica en <span className="text-primary">Córdoba</span>: tu casa inteligente, hoy.
             </motion.h1>
             <motion.p variants={itemVariants} className="text-lg md:text-xl text-foreground/80 max-w-xl mx-auto md:mx-0 mb-10">
-              Somos Nubiq Domótica, tu empresa de automatización del hogar en Córdoba, Argentina. Convertimos tu casa u oficina en un espacio inteligente, fácil de usar y adaptado a vos. Nos ocupamos de cada detalle para que disfrutes al máximo, mientras la tecnología se encarga del resto.
+              Somos <strong>Nubiq</strong>, la empresa de <strong>domótica en Córdoba, Argentina</strong>. Instalamos casas inteligentes sin obras: controlá luces, clima, persianas, cámaras y cerraduras desde el celular o por voz. Asesoramiento gratuito.
             </motion.p>
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-primary/30 transform hover:scale-105 transition-all duration-300 px-8 py-6 text-lg rounded-full">
@@ -139,7 +139,7 @@ const HomePage = () => {
           ease: [0.16, 1, 0.3, 1]
         }}>
             <div className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 transform md:rotate-3 transition-transform duration-500 hover:rotate-0">
-              <img alt="Una mano sosteniendo un smartphone que controla las luces y la temperatura de una sala de estar moderna y elegante" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1608377205619-03a0b4c4e270" />
+              <img alt="Casa inteligente en Córdoba: smartphone controlando luces y temperatura de un living moderno con domótica Nubiq" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1608377205619-03a0b4c4e270" fetchpriority="high" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
             </div>
           </motion.div>
@@ -163,7 +163,7 @@ const HomePage = () => {
             ease: [0.16, 1, 0.3, 1]
           }}>
               <div className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl shadow-secondary/20">
-                <img alt="Diagrama abstracto de dispositivos inteligentes conectados en un hogar" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1666401565408-9b6b0741f0d6" />
+                <img alt="Diagrama abstracto de dispositivos inteligentes conectados en un hogar inteligente con domótica en Córdoba" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1666401565408-9b6b0741f0d6" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
               </div>
             </motion.div>
@@ -265,6 +265,71 @@ const HomePage = () => {
         </div>
       </section>
       
+      <section className="py-12 md:py-16 container mx-auto px-4">
+        <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true,
+          amount: 0.3
+        }} transition={{
+          duration: 0.7
+        }} className="text-center mb-10 md:mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Domótica en <span className="text-primary">toda Córdoba</span></h2>
+          <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
+            Trabajamos en casas, departamentos y oficinas en Córdoba Capital y alrededores. Estas son algunas de las zonas donde ya instalamos domótica.
+          </p>
+        </motion.div>
+        <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true,
+          amount: 0.3
+        }} transition={{
+          duration: 0.7,
+          delay: 0.2
+        }} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
+          {[
+            { name: 'Nueva Córdoba', link: '/domotica-nueva-cordoba' },
+            { name: 'Cerro de las Rosas', link: '/domotica-cerro-de-las-rosas' },
+            { name: 'Villa Allende', link: '/domotica-villa-allende' },
+            { name: 'Valle Escondido', link: '/domotica-valle-escondido' },
+            { name: 'Jesús María' },
+            { name: 'Villa Carlos Paz' },
+            { name: 'General Paz' },
+            { name: 'Alta Córdoba' },
+            { name: 'Urca' },
+            { name: 'Argüello' },
+            { name: 'Manantiales' },
+            { name: 'Tejas del Sur' }
+          ].map((barrio) =>
+            barrio.link ? (
+              <Link
+                key={barrio.name}
+                to={barrio.link}
+                className="bg-card/40 border border-white/10 px-4 py-3 rounded-lg text-center text-sm text-foreground/80 hover:border-primary/50 hover:bg-card/60 hover:text-primary transition-all"
+              >
+                {barrio.name}
+              </Link>
+            ) : (
+              <div key={barrio.name} className="bg-card/40 border border-white/10 px-4 py-3 rounded-lg text-center text-sm text-foreground/80">
+                {barrio.name}
+              </div>
+            )
+          )}
+        </motion.div>
+        <p className="text-center text-foreground/60 text-sm mt-6">
+          ¿No ves tu zona? Consultanos igual — coordinamos visita o videollamada en toda la provincia.
+        </p>
+      </section>
+
       <section className="py-16 md:py-20 bg-muted/40 border border-white/5 rounded-2xl">
         <div className="container mx-auto px-4 text-center">
           <motion.div initial={{
