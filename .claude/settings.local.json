@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir C:\\\\Users\\\\LUCAS\\\\Downloads\\\\Nubiq-main\\\\Nubiq\\\\Nubiq *)",
+      "Bash(dir C:\\\\Users\\\\LUCAS\\\\Downloads\\\\Nubiq-main\\\\Nubiq\\\\Nubiq\\\\src *)",
+      "Bash(dir C:\\\\Users\\\\LUCAS\\\\Downloads\\\\Nubiq-main\\\\Nubiq\\\\Nubiq\\\\public *)",
+      "Bash(dir \"C:\\\\Users\\\\LUCAS\\\\Downloads\\\\Nubiq-main\\\\Nubiq\\\\Nubiq\\\\src\\\\components\")",
+      "Bash(dir \"C:\\\\Users\\\\LUCAS\\\\Downloads\\\\Nubiq-main\\\\Nubiq\\\\Nubiq\\\\src\\\\pages\")",
+      "Bash(dir \"C:\\\\Users\\\\LUCAS\\\\Downloads\\\\Nubiq-main\\\\Nubiq\\\\Nubiq\\\\src\\\\hooks\")",
+      "Bash(dir \"C:\\\\Users\\\\LUCAS\\\\Downloads\\\\Nubiq-main\\\\Nubiq\\\\Nubiq\\\\src\\\\lib\")",
+      "Bash(dir \"C:\\\\Users\\\\LUCAS\\\\Downloads\\\\Nubiq-main\\\\Nubiq\\\\Nubiq\\\\src\\\\utils\")",
+      "Bash(dir C:\\\\Users\\\\LUCAS\\\\Downloads\\\\Nubiq-main\\\\Nubiq\\\\Nubiq\\\\src\\\\components\\\\nubiq-plus *)"
+    ]
+  }
+}
