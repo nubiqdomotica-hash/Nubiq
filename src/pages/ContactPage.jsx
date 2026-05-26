@@ -7,9 +7,11 @@ import SeoBreadcrumb from '@/components/SeoBreadcrumb';
 
 const ContactPage = () => {
   const whatsAppNumber = "5493512326814";
-  const message = `Hola! De parte del equipo de Nubiq Domótica te dejamos este mensaje armado para agilizar la atención. Podés editarlo según tus necesidades y enviarlo:
+  const message = `Hola Nubiq! Me gustaría asesorarme sobre domótica para mi proyecto.
 
-Hola Nubiq, soy [Nombre] de [Barrio/Ciudad]. Quiero domotizar mi [casa/departamento]. Me interesa: [Luces] [Clima/Caldera] [Cámaras] [Cerraduras] [Wi-Fi Mesh] [Escenas]. Son [X m²], [X plantas]. ¿Coordinamos una visita o videollamada y me envían presupuesto?`;
+Soy [Nombre], de [Barrio o ciudad]. [Estoy en obra / remodelando / mi casa ya está terminada] y la propiedad tiene [X m²].
+
+¿Cuándo tienen un momento para conversar?`;
   const encodedMessage = encodeURIComponent(message);
   const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
 
