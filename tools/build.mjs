@@ -20,6 +20,7 @@ function run(commandLine, { ignoreError = false } = {}) {
 }
 
 async function main() {
+  await run('node tools/generate-sitemap.mjs');
   await run('node tools/generate-llms.js', { ignoreError: true });
   await run('vite build');
   await run('node tools/prerender-routes.mjs');
