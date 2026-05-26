@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = '5493515208747';
+const WHATSAPP_NUMBER = '5493512326814';
 
 export const getWhatsAppLink = (messageType = 'general', customData = {}) => {
   const messages = {
