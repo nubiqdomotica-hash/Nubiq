@@ -7,6 +7,7 @@ import NubiqPlusPage from '@/pages/NubiqPlusPage';
 import WhatIsDomoticsPage from '@/pages/WhatIsDomoticsPage';
 import AboutUsPage from '@/pages/AboutUsPage';
 import ContactPage from '@/pages/ContactPage';
+import PartnersPage from '@/pages/PartnersPage';
 import NuevaCordobaPage from '@/pages/zonas/NuevaCordobaPage';
 import CerroDeLasRosasPage from '@/pages/zonas/CerroDeLasRosasPage';
 import VillaAllendePage from '@/pages/zonas/VillaAllendePage';
@@ -28,6 +29,7 @@ function App() {
           <Route path="/que-es-domotica" element={<WhatIsDomoticsPage />} />
           <Route path="/nosotros" element={<AboutUsPage />} />
           <Route path="/contacto" element={<ContactPage />} />
+          <Route path="/partners" element={<PartnersPage />} />
           <Route path="/domotica-nueva-cordoba" element={<NuevaCordobaPage />} />
           <Route path="/domotica-cerro-de-las-rosas" element={<CerroDeLasRosasPage />} />
           <Route path="/domotica-villa-allende" element={<VillaAllendePage />} />

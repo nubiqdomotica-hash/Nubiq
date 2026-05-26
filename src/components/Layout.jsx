@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 const Layout = ({ children }) => {
   const location = useLocation();
   const showFloatingButton = location.pathname !== '/contacto';
-  const lucasWhatsAppNumber = "543512326814";
+  const lucasWhatsAppNumber = "5493512326814";
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
