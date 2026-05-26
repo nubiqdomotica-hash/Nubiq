@@ -21,6 +21,8 @@ const HeroSection = () => {
             src="https://images.unsplash.com/photo-1532971728-03b172590d0e?auto=format&fit=crop&w=1920&q=80&fm=webp"
             srcSet="https://images.unsplash.com/photo-1532971728-03b172590d0e?auto=format&fit=crop&w=960&q=80&fm=webp 960w, https://images.unsplash.com/photo-1532971728-03b172590d0e?auto=format&fit=crop&w=1920&q=80&fm=webp 1920w"
             sizes="100vw"
+            width="1920"
+            height="1280"
             alt="Living moderno con domótica premium LifeSmart instalada por Nubiq+ en Córdoba"
             className="w-full h-full object-cover"
             fetchpriority="high"

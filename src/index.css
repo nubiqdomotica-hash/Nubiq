@@ -72,8 +72,9 @@
   }
 }
 
-/* Add Poppins and Inter fonts from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+/* Las fuentes Poppins e Inter se cargan desde index.html con preconnect
+   para no bloquear el render (antes estaban como @import aca, lo cual
+   pausa el parseo hasta que el archivo de fuentes esta resuelto). */
 
 html {
   scroll-behavior: smooth;

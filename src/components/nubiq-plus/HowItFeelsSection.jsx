@@ -80,6 +80,8 @@ const HowItFeelsSection = () => {
               src="https://images.unsplash.com/photo-1701170846728-4e7c1b15c4ef?auto=format&fit=crop&w=1200&q=80&fm=webp"
               srcSet="https://images.unsplash.com/photo-1701170846728-4e7c1b15c4ef?auto=format&fit=crop&w=600&q=80&fm=webp 600w, https://images.unsplash.com/photo-1701170846728-4e7c1b15c4ef?auto=format&fit=crop&w=1200&q=80&fm=webp 1200w"
               sizes="(max-width: 768px) 100vw, 50vw"
+              width="1200"
+              height="800"
               alt="Sala moderna de lujo con domótica premium Nubiq+ LifeSmart, vista a la ciudad de Córdoba"
               className="w-full h-full object-cover"
               loading="lazy"

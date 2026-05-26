@@ -213,6 +213,8 @@ const PartnersPage = () => {
                 src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=80&fm=webp"
                 srcSet="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=700&q=80&fm=webp 700w, https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=80&fm=webp 1400w"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                width="1400"
+                height="933"
                 fetchpriority="high"
                 decoding="async"
               />
