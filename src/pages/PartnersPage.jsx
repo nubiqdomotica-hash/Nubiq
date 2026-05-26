@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -210,7 +210,9 @@ const PartnersPage = () => {
               <img
                 alt="Arquitecto revisando planos de un proyecto residencial premium en Córdoba con domótica Nubiq integrada"
                 className="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=80"
+                src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=80&fm=webp"
+                srcSet="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=700&q=80&fm=webp 700w, https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=80&fm=webp 1400w"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 fetchpriority="high"
                 decoding="async"
               />

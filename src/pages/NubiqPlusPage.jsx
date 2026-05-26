@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import HeroSection from '@/components/nubiq-plus/HeroSection';
 import HowItFeelsSection from '@/components/nubiq-plus/HowItFeelsSection';
 import TurnkeySection from '@/components/nubiq-plus/TurnkeySection';

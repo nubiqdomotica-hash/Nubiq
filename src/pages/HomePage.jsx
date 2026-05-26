@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -232,7 +232,9 @@ const HomePage = () => {
               <img
                 alt="Living de casa premium en Córdoba con domótica Nubiq: iluminación cálida, cortinas automáticas y atmósfera de alto nivel"
                 className="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80"
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80&fm=webp"
+                srcSet="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80&fm=webp 700w, https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80&fm=webp 1400w"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 fetchpriority="high"
                 decoding="async"
               />

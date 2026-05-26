@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lightbulb, Thermometer, Wind, Lock, Video, Building, Users, Package, Droplets, Wifi, Speaker, Zap as EnergyZap, Download, CheckCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
