@@ -29,7 +29,7 @@ Hola Nubiq, soy [Nombre] de [Barrio/Ciudad]. Quiero domotizar mi [casa/departame
             <ul className="space-y-2 text-sm">
               <li><Link to="/" className="hover:text-primary transition-colors">Inicio</Link></li>
               <li><Link to="/servicios" className="hover:text-primary transition-colors">Servicios</Link></li>
-              <li><Link to="/nubiq-plus" className="hover:text-primary transition-colors">Nubiq+ LifeSmart</Link></li>
+              <li><Link to="/proyectos" className="hover:text-primary transition-colors">Proyectos</Link></li>
               <li><Link to="/que-es-domotica" className="hover:text-primary transition-colors">¿Qué es la domótica?</Link></li>
               <li><Link to="/nosotros" className="hover:text-primary transition-colors">Nosotros</Link></li>
               <li><Link to="/contacto" className="hover:text-primary transition-colors">Contacto</Link></li>

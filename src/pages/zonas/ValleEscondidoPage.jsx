@@ -8,7 +8,7 @@ const ValleEscondidoPage = () => (
     intro="Domótica en Valle Escondido: casas modernas en country, integración total y diseño cuidado. Llevamos tu casa al siguiente nivel sin sacrificar estética."
     whyHere={[
       "Valle Escondido es uno de los countries más lindos de Córdoba, con casas de diseño moderno, materiales de calidad y arquitectura cuidada. La domótica acá tiene que ser invisible: sin cables a la vista, sin botones desprolijos, integrada al diseño.",
-      "Trabajamos con productos premium (Nubiq+ con LifeSmart) para esta zona, donde la estética y la integración pesan tanto como la funcionalidad. Llaves de luz con acabados premium, paneles de control de cristal, sensores discretos.",
+      "Trabajamos con productos premium para esta zona, donde la estética y la integración pesan tanto como la funcionalidad. Llaves de luz con acabados premium, paneles de control de cristal, sensores discretos.",
       "Para casas de obra nueva en Valle Escondido coordinamos desde el plano: previsiones de cableado, ubicación de paneles, integración con domótica del techo, riego, pileta y sistemas de audio multiambiente."
     ]}
     highlightedServices={[
@@ -47,8 +47,8 @@ const ValleEscondidoPage = () => (
     testimonialAuthor="Cliente"
     faqs={[
       {
-        question: "¿Hacen instalaciones premium con productos LifeSmart?",
-        answer: "Sí. Para clientes que buscan productos premium ofrecemos Nubiq+ con LifeSmart, somos distribuidor oficial en Córdoba. Acabados de cristal, paneles táctiles y diseño cuidado."
+        question: "¿Hacen instalaciones premium con acabados de diseño?",
+        answer: "Sí. Para clientes que buscan lo mejor trabajamos con productos premium: acabados de cristal, paneles táctiles y diseño cuidado, integrados a la estética de la casa."
       },
       {
         question: "¿Trabajan con arquitectos en obras nuevas?",

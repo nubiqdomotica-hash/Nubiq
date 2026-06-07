@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Home as HomeIcon, Users, Mail, Menu, X, Settings, HelpCircle, Sparkles } from 'lucide-react';
+import { Home as HomeIcon, Users, Mail, Menu, X, Settings, HelpCircle, FolderOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
   { name: 'Inicio', path: '/', icon: <HomeIcon className="w-5 h-5" /> },
   { name: 'Servicios', path: '/servicios', icon: <Settings className="w-5 h-5" /> },
-  { name: 'Nubiq+', subtitle: 'LifeSmart', path: '/nubiq-plus', icon: <Sparkles className="w-5 h-5" /> },
+  { name: 'Proyectos', path: '/proyectos', icon: <FolderOpen className="w-5 h-5" /> },
   { name: '¿Domótica?', path: '/que-es-domotica', icon: <HelpCircle className="w-5 h-5" /> },
   { name: 'Nosotros', path: '/nosotros', icon: <Users className="w-5 h-5" /> },
   { name: 'Contacto', path: '/contacto', icon: <Mail className="w-5 h-5" /> },

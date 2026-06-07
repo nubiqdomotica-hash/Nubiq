@@ -1,0 +1,28 @@
+CARPETA DE FOTOS Y VIDEOS DE LOS PROYECTOS
+==========================================
+
+Acá van las fotos y los videos de cada proyecto que se muestra en la web,
+en la sección "Proyectos" (nubiqdomotica.com.ar/proyectos).
+
+Cómo organizarlo
+----------------
+1. Creá una subcarpeta por proyecto, con un nombre corto y sin espacios. Ej:
+      public/proyectos/casa-villa-allende/
+
+2. Poné adentro las fotos (.jpg / .webp / .png) y los videos (.mp4). Ej:
+      public/proyectos/casa-villa-allende/living.jpg
+      public/proyectos/casa-villa-allende/recorrido.mp4
+
+3. Después, esos archivos se referencian en la ficha de datos:
+      src/data/proyectos.js
+   con la ruta que empieza en "/proyectos/...". Ej:
+      { tipo: 'imagen', src: '/proyectos/casa-villa-allende/living.jpg', alt: '...' }
+
+Recomendaciones rápidas
+-----------------------
+- Fotos: que no sean enormes (idealmente menos de ~500 KB cada una) para que la
+  web cargue rápido. Formato .webp o .jpg.
+- Videos: .mp4 (H.264). Si es muy pesado, mejor recortarlo o comprimirlo antes.
+
+Si no querés hacer esto a mano, mandale a Claude las fotos, los videos y una
+descripción corta de cada proyecto y él lo carga y lo publica.

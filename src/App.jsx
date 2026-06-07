@@ -9,7 +9,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 // navega a ella, en lugar de incluirse en el bundle inicial.
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const ServicesPage = lazy(() => import('@/pages/ServicesPage'));
-const NubiqPlusPage = lazy(() => import('@/pages/NubiqPlusPage'));
+const ProyectosPage = lazy(() => import('@/pages/ProyectosPage'));
 const WhatIsDomoticsPage = lazy(() => import('@/pages/WhatIsDomoticsPage'));
 const AboutUsPage = lazy(() => import('@/pages/AboutUsPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
@@ -35,7 +35,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/servicios" element={<ServicesPage />} />
-            <Route path="/nubiq-plus" element={<NubiqPlusPage />} />
+            <Route path="/proyectos" element={<ProyectosPage />} />
             <Route path="/que-es-domotica" element={<WhatIsDomoticsPage />} />
             <Route path="/nosotros" element={<AboutUsPage />} />
             <Route path="/contacto" element={<ContactPage />} />
