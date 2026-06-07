@@ -59,8 +59,8 @@ export const proyectos = [
     media: [],
   },
   {
-    slug: 'fundacion-va',
-    titulo: 'Fundación VA',
+    slug: 'fundacion-margonari-glavich',
+    titulo: 'Fundación Margonari Glavich',
     estado: 'terminado',
     fecha: '2026-02-11',
     media: [],
@@ -80,8 +80,8 @@ export const proyectos = [
     media: [],
   },
   {
-    slug: 'casa-san-isidro-1',
-    titulo: 'Casa San Isidro 1',
+    slug: 'hogar-san-isidro-1',
+    titulo: 'Hogar — San Isidro 1',
     estado: 'terminado',
     fecha: '2025-10-10',
     media: [],
@@ -94,8 +94,8 @@ export const proyectos = [
     media: [],
   },
   {
-    slug: 'oficinas-bertero',
-    titulo: 'Oficinas Inmobiliarias Bertero',
+    slug: 'oficinas-inmobiliaria-bertero',
+    titulo: 'Oficinas — Inmobiliaria Bertero',
     estado: 'terminado',
     fecha: '2025-08-22',
     media: [],
