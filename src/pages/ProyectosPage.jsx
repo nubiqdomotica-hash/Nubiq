@@ -50,7 +50,7 @@ const countMedia = (project) => {
 };
 
 // ── Tarjeta de un proyecto ──────────────────────────────────────────────────
-const ProjectCard = ({ project, index, onOpen }) => {
+const ProjectCard = ({ project, index, onOpen, animateIn = true }) => {
   const cover = getCover(project);
   const { fotos, videos } = countMedia(project);
   const hasMedia = (project.media?.length || 0) > 0;
@@ -59,11 +59,11 @@ const ProjectCard = ({ project, index, onOpen }) => {
     <motion.button
       type="button"
       onClick={() => onOpen(project)}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={animateIn ? { opacity: 0, y: 40 } : false}
+      whileInView={animateIn ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group text-left bg-card/50 border border-white/10 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
+      className="group w-full text-left bg-card/50 border border-white/10 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
     >
       {/* Portada */}
       <div className="relative h-56 w-full overflow-hidden bg-muted">
@@ -148,40 +148,38 @@ const EmptyState = ({ texto }) => (
   </motion.div>
 );
 
-// ── Paginación responsiva: 6 por página en computadora, 3 en celular ────────
-const usePageSize = () => {
-  const getSize = () =>
-    typeof window !== 'undefined' && window.innerWidth >= 1024 ? 6 : 3;
-  const [size, setSize] = useState(getSize);
+// ── Estilo común de las flechas de navegación ───────────────────────────────
+const FLECHA_CLASE =
+  'p-3 rounded-full border border-white/15 text-foreground/80 transition-colors ' +
+  'hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 ' +
+  'focus-visible:ring-primary disabled:opacity-30 disabled:cursor-not-allowed ' +
+  'disabled:hover:border-white/15 disabled:hover:text-foreground/80';
+
+// ── Detecta si estamos en pantalla grande (computadora) ─────────────────────
+const useIsDesktop = () => {
+  const get = () => typeof window !== 'undefined' && window.innerWidth >= 1024;
+  const [isDesktop, setIsDesktop] = useState(get);
   useEffect(() => {
-    const onResize = () => setSize(getSize());
+    const onResize = () => setIsDesktop(get());
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
-  return size;
+  return isDesktop;
 };
 
-// ── Grilla de proyectos paginada (o vacío) ──────────────────────────────────
-const ProjectsGrid = ({ projects, emptyText, onOpen }) => {
-  const pageSize = usePageSize();
+// ── Computadora: grilla de 6 con flechas para pasar de página ────────────────
+const DesktopGrid = ({ projects, onOpen }) => {
+  const pageSize = 6;
   const [page, setPage] = useState(0);
   const totalPages = Math.max(1, Math.ceil(projects.length / pageSize));
 
-  // Si por un cambio de tamaño la página actual queda fuera de rango, reacomodo.
   useEffect(() => {
     setPage((p) => Math.min(p, totalPages - 1));
   }, [totalPages]);
 
-  if (!projects.length) return <EmptyState texto={emptyText} />;
-
   const start = page * pageSize;
   const visibles = projects.slice(start, start + pageSize);
   const hayPaginas = totalPages > 1;
-  const flechaClase =
-    'p-3 rounded-full border border-white/15 text-foreground/80 transition-colors ' +
-    'hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 ' +
-    'focus-visible:ring-primary disabled:opacity-30 disabled:cursor-not-allowed ' +
-    'disabled:hover:border-white/15 disabled:hover:text-foreground/80';
 
   return (
     <div>
@@ -193,33 +191,103 @@ const ProjectsGrid = ({ projects, emptyText, onOpen }) => {
 
       {hayPaginas && (
         <div className="flex items-center justify-center gap-5 mt-12">
-          <button
-            type="button"
-            onClick={() => setPage((p) => Math.max(0, p - 1))}
-            disabled={page === 0}
-            aria-label="Ver proyectos más recientes"
-            className={flechaClase}
-          >
+          <button type="button" onClick={() => setPage((p) => Math.max(0, p - 1))} disabled={page === 0} aria-label="Ver proyectos más recientes" className={FLECHA_CLASE}>
             <ChevronLeft className="w-5 h-5" />
           </button>
-
-          <span className="text-sm font-medium text-foreground/60 tabular-nums select-none">
-            {page + 1} / {totalPages}
-          </span>
-
-          <button
-            type="button"
-            onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-            disabled={page === totalPages - 1}
-            aria-label="Ver proyectos anteriores"
-            className={flechaClase}
-          >
+          <span className="text-sm font-medium text-foreground/60 tabular-nums select-none">{page + 1} / {totalPages}</span>
+          <button type="button" onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))} disabled={page === totalPages - 1} aria-label="Ver proyectos anteriores" className={FLECHA_CLASE}>
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       )}
     </div>
   );
+};
+
+// ── Celular: carrusel tipo "coverflow" (de a uno, con los demás de fondo) ────
+const MobileCarousel = ({ projects, onOpen }) => {
+  const [index, setIndex] = useState(0);
+  const total = projects.length;
+
+  const go = (dir) => setIndex((i) => Math.min(total - 1, Math.max(0, i + dir)));
+
+  const onDragEnd = (_e, info) => {
+    const umbral = 60; // cuánto hay que arrastrar para que pase al siguiente
+    if (info.offset.x < -umbral) go(1);
+    else if (info.offset.x > umbral) go(-1);
+  };
+
+  return (
+    <div>
+      {/* Escenario 3D del carrusel */}
+      <div className="relative h-[380px] flex items-center justify-center overflow-hidden [perspective:1000px]">
+        {projects.map((project, i) => {
+          const offset = i - index;
+          if (Math.abs(offset) > 2) return null; // solo renderizo las cercanas
+          const isActive = offset === 0;
+          return (
+            <motion.div
+              key={project.slug}
+              className="absolute w-[80%] max-w-xs"
+              style={{ transformStyle: 'preserve-3d' }}
+              animate={{
+                x: `${offset * 60}%`,
+                scale: isActive ? 1 : 0.82,
+                opacity: isActive ? 1 : 0.5,
+                rotateY: offset * -16,
+                zIndex: 10 - Math.abs(offset),
+              }}
+              transition={{ type: 'spring', stiffness: 260, damping: 30 }}
+              drag={isActive ? 'x' : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={isActive ? onDragEnd : undefined}
+            >
+              <ProjectCard
+                project={project}
+                index={0}
+                animateIn={false}
+                onOpen={isActive ? onOpen : () => setIndex(i)}
+              />
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Flechas + contador */}
+      <div className="flex items-center justify-center gap-5 mt-8">
+        <button type="button" onClick={() => go(-1)} disabled={index === 0} aria-label="Proyecto anterior" className={FLECHA_CLASE}>
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <span className="text-sm font-medium text-foreground/60 tabular-nums select-none">{index + 1} / {total}</span>
+        <button type="button" onClick={() => go(1)} disabled={index === total - 1} aria-label="Proyecto siguiente" className={FLECHA_CLASE}>
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Puntitos indicadores */}
+      <div className="flex items-center justify-center gap-2 mt-5">
+        {projects.map((p, i) => (
+          <button
+            key={p.slug}
+            type="button"
+            onClick={() => setIndex(i)}
+            aria-label={`Ir al proyecto ${i + 1}`}
+            className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-primary' : 'w-2 bg-white/25'}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ── Grilla de proyectos: carrusel en celular, grilla paginada en computadora ─
+const ProjectsGrid = ({ projects, emptyText, onOpen }) => {
+  const isDesktop = useIsDesktop();
+  if (!projects.length) return <EmptyState texto={emptyText} />;
+  return isDesktop
+    ? <DesktopGrid projects={projects} onOpen={onOpen} />
+    : <MobileCarousel projects={projects} onOpen={onOpen} />;
 };
 
 // ── Visor / lightbox a pantalla grande ──────────────────────────────────────
