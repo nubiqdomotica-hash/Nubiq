@@ -48,7 +48,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center">
-            <img src="https://horizons-cdn.hostinger.com/399f02cf-d238-442b-8230-bd06d51cc905/9e5b49882bef04eec3f5e8e3e52180ac.png" alt="Nubiq Domótica Logo" className="h-12 w-auto" />
+            <img src="/logo-nubiq-blanco.png" alt="Nubiq Domótica Logo" width="240" height="58" className="h-12 w-auto" />
           </Link>
 
           <div className="hidden md:flex items-center space-x-2">

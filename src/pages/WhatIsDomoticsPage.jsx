@@ -167,7 +167,7 @@ const WhatIsDomoticsPage = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="rounded-xl overflow-hidden shadow-2xl border border-white/10 order-1 md:order-2"
           >
-            <img alt="Casa inteligente moderna en Córdoba con iconos de domótica: control por voz, automatización y casa conectada" className="w-full h-auto object-cover aspect-video opacity-90" src="https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/d67af90fd2c33db20c69ef7e9e4dc498.png" loading="lazy" decoding="async" />
+            <img alt="Living moderno y luminoso de una casa inteligente en Córdoba" className="w-full h-auto object-cover aspect-video opacity-90" src="/secciones/casa-inteligente.webp" loading="lazy" decoding="async" />
           </motion.div>
         </div>
       </section>
@@ -208,22 +208,22 @@ const WhatIsDomoticsPage = () => {
           <ExampleCard
             title="Al Despertar"
             description="Las cortinas se abren con la luz del sol, y tu música favorita comienza a sonar suavemente. Todo listo para empezar el día."
-            imageSrc="https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/5f1a8e9e91ed22e9834b5084a8082372.png"
-            imageAlt="Exterior de una casa moderna de dos pisos con un camino de entrada de hormigón y un garaje para dos coches al atardecer"
+            imageSrc="/secciones/al-despertar.webp"
+            imageAlt="Exterior de una casa moderna con pileta al atardecer"
             delay={0.1}
           />
           <ExampleCard
             title="Reunión en Casa"
             description="Tocás un botón y se activa la escena: luces cálidas, cortinas cerradas y música."
-            imageSrc="https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/f8b59ae5e688546afaee01e94ad83c1f.png"
-            imageAlt="Grupo de amigos disfrutando de una cena al aire libre por la noche con luces colgantes"
+            imageSrc="/secciones/reunion-en-casa.webp"
+            imageAlt="Grupo de amigos disfrutando de una cena en casa"
             delay={0.2}
           />
           <ExampleCard
             title="¿Cómo están los chicos?"
             description="Estás en el trabajo. Abrís la app y ves todo en vivo desde la cámara del living. Tranquilidad total."
-            imageSrc="https://storage.googleapis.com/hostinger-horizons-assets-prod/399f02cf-d238-442b-8230-bd06d51cc905/85367c9b8984386919d10730985b1e8e.png"
-            imageAlt="Dos niños pequeños jugando en el suelo de un living luminoso y moderno"
+            imageSrc="/secciones/familia-en-casa.webp"
+            imageAlt="Familia con su bebé en el living de su casa"
             delay={0.3}
           />
         </div>

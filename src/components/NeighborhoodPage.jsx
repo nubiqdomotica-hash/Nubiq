@@ -45,7 +45,7 @@ const NeighborhoodPage = ({
       addressCountry: 'AR'
     },
     areaServed: { '@type': 'Place', name: `${neighborhood}, Córdoba` },
-    image: 'https://horizons-cdn.hostinger.com/399f02cf-d238-442b-8230-bd06d51cc905/9e5b49882bef04eec3f5e8e3e52180ac.png'
+    image: 'https://nubiqdomotica.com.ar/og-image.png'
   };
 
   const faqSchema = faqs && faqs.length > 0 ? {

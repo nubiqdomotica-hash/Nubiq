@@ -23,7 +23,9 @@ const ValueCard = ({ icon, title, description, delay }) => (
 );
 
 const AboutUsPage = () => {
-  const founderImage = "https://horizons-cdn.hostinger.com/399f02cf-d238-442b-8230-bd06d51cc905/16c09fd023f0ec8d19e239844877fe24.jpg";
+  // Foto de los fundadores: cuando la tengas, guardala en /public y poné la ruta acá (ej: '/secciones/fundadores.webp').
+  // Mientras sea null, se muestra un placeholder con el logo de Nubiq.
+  const founderImage = null;
 
   return (
     <motion.div
@@ -69,14 +71,22 @@ const AboutUsPage = () => {
           className="bg-card/50 border border-white/10 rounded-2xl overflow-hidden text-center group"
         >
           <div className="relative h-80 md:h-96 overflow-hidden">
-            <img
-              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              alt="Lucas Carranza y Franco Oppido, co-fundadores de Nubiq Domótica en Córdoba"
-              src={founderImage}
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            {founderImage ? (
+              <>
+                <img
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  alt="Lucas Carranza y Franco Oppido, co-fundadores de Nubiq Domótica en Córdoba"
+                  src={founderImage}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-card to-background">
+                <img src="/logo-nubiq-blanco.png" alt="Nubiq Domótica" width="240" height="58" className="h-14 w-auto opacity-90" />
+              </div>
+            )}
           </div>
           <div className="p-6">
             <h3 className="text-xl font-bold text-foreground mb-1">Lucas Carranza & Franco Oppido</h3>
