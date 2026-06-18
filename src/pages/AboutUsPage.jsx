@@ -23,9 +23,8 @@ const ValueCard = ({ icon, title, description, delay }) => (
 );
 
 const AboutUsPage = () => {
-  // Foto de los fundadores: cuando la tengas, guardala en /public y poné la ruta acá (ej: '/secciones/fundadores.webp').
-  // Mientras sea null, se muestra un placeholder con el logo de Nubiq.
-  const founderImage = null;
+  // Foto de los fundadores. Si se pone en null, se muestra un placeholder con el logo de Nubiq.
+  const founderImage = '/secciones/fundadores.webp';
 
   return (
     <motion.div
@@ -74,7 +73,7 @@ const AboutUsPage = () => {
             {founderImage ? (
               <>
                 <img
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-105"
                   alt="Lucas Carranza y Franco Oppido, co-fundadores de Nubiq Domótica en Córdoba"
                   src={founderImage}
                   loading="lazy"
