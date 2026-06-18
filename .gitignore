@@ -34,3 +34,9 @@ lerna-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Originales pesados de proyectos (videos sin comprimir). Solo se publican
+# las versiones comprimidas que viven en public/proyectos/.
+/Proyectos/
+# Archivos temporales de procesamiento (scripts, logs, pruebas).
+tools/_*

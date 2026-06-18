@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   MapPin, Calendar, Image as ImageIcon, Video as VideoIcon, Play,
   X, ChevronLeft, ChevronRight, FolderOpen, CheckCircle2,
+  Lightbulb, Thermometer, Camera, Mic, Cpu, Blinds, Droplets, Waves,
+  DoorOpen, Tablet, Lock, Wifi, Music, Film, Radar, Server, Flame,
+  BatteryCharging, Sparkles,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -49,6 +52,32 @@ const countMedia = (project) => {
   return { fotos, videos };
 };
 
+// Ícono para cada chip de "Qué integramos" (matchea por palabra clave, así
+// tolera variantes de redacción). Si no reconoce la categoría, usa Sparkles.
+const iconForCategoria = (label) => {
+  const s = label.toLowerCase();
+  if (s.includes('ilumin')) return Lightbulb;
+  if (s.includes('climat')) return Thermometer;
+  if (s.includes('portero')) return VideoIcon;
+  if (s.includes('cámara') || s.includes('camara') || s.includes('videovigil') || s.includes('vigilancia')) return Camera;
+  if (s.includes('voz')) return Mic;
+  if (s.includes('cortina')) return Blinds;
+  if (s.includes('riego')) return Droplets;
+  if (s.includes('piscina') || s.includes('pileta')) return Waves;
+  if (s.includes('port')) return DoorOpen;
+  if (s.includes('pantalla')) return Tablet;
+  if (s.includes('cerradura')) return Lock;
+  if (s.includes('wifi') || s.includes('mesh')) return Wifi;
+  if (s.includes('cinema') || s.includes('cinemato')) return Film;
+  if (s.includes('sonido') || s.includes('sonos') || s.includes('hifi') || s.includes('audio')) return Music;
+  if (s.includes('sensor')) return Radar;
+  if (s.includes('local')) return Server;
+  if (s.includes('central') || s.includes('domótica') || s.includes('domotica')) return Cpu;
+  if (s.includes('caldera')) return Flame;
+  if (s.includes('ups')) return BatteryCharging;
+  return Sparkles;
+};
+
 // ── Tarjeta de un proyecto ──────────────────────────────────────────────────
 const ProjectCard = ({ project, index, onOpen, animateIn = true }) => {
   const cover = getCover(project);
@@ -65,8 +94,8 @@ const ProjectCard = ({ project, index, onOpen, animateIn = true }) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group w-full text-left bg-card/50 border border-white/10 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
     >
-      {/* Portada */}
-      <div className="relative h-56 w-full overflow-hidden bg-muted">
+      {/* Portada (formato vertical / retrato, 4:5) */}
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
         {cover ? (
           <img
             src={cover}
@@ -122,7 +151,7 @@ const ProjectCard = ({ project, index, onOpen, animateIn = true }) => {
           )}
         </div>
         {project.descripcion && (
-          <p className="text-foreground/70 leading-relaxed">{project.descripcion}</p>
+          <p className="text-foreground/70 leading-relaxed line-clamp-2">{project.descripcion}</p>
         )}
       </div>
     </motion.button>
@@ -219,8 +248,8 @@ const MobileCarousel = ({ projects, onOpen }) => {
 
   return (
     <div>
-      {/* Escenario 3D del carrusel */}
-      <div className="relative h-[380px] flex items-center justify-center overflow-hidden [perspective:1000px]">
+      {/* Escenario 3D del carrusel (alto generoso para tarjetas verticales) */}
+      <div className="relative h-[540px] flex items-center justify-center overflow-hidden [perspective:1000px]">
         {projects.map((project, i) => {
           const offset = i - index;
           if (Math.abs(offset) > 2) return null; // solo renderizo las cercanas
@@ -228,7 +257,7 @@ const MobileCarousel = ({ projects, onOpen }) => {
           return (
             <motion.div
               key={project.slug}
-              className="absolute w-[80%] max-w-xs"
+              className="absolute w-[74%] max-w-[270px]"
               style={{ transformStyle: 'preserve-3d' }}
               animate={{
                 x: `${offset * 60}%`,
@@ -429,6 +458,11 @@ const ProjectModal = ({ project, onClose, onOpenMedia }) => {
   const media = project.media || [];
   const cover = getCover(project);
   const tieneContenido = media.length > 0 || project.descripcion || project.testimonio;
+  // La galería se adapta a la cantidad: 1 elemento no ocupa toda la fila.
+  const galleryCols =
+    media.length === 1 ? 'grid-cols-1 max-w-[220px]'
+    : media.length === 2 ? 'grid-cols-2 max-w-md'
+    : 'grid-cols-2 sm:grid-cols-3';
 
   return (
     <motion.div
@@ -485,33 +519,39 @@ const ProjectModal = ({ project, onClose, onOpenMedia }) => {
             )}
           </div>
 
-          {/* Etiquetas de qué se domotizó */}
-          {project.categorias?.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.categorias.map((c) => (
-                <span key={c} className="text-xs font-medium text-primary bg-primary/10 border border-primary/20 rounded-full px-3 py-1">
-                  {c}
-                </span>
-              ))}
-            </div>
-          )}
-
           {/* Descripción */}
           {project.descripcion && (
             <p className="text-foreground/80 leading-relaxed mb-8">{project.descripcion}</p>
+          )}
+
+          {/* Qué integramos */}
+          {project.categorias?.length > 0 && (
+            <div className="mb-8">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-foreground/50 mb-3">Qué integramos</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.categorias.map((c) => {
+                  const Icon = iconForCategoria(c);
+                  return (
+                    <span key={c} className="inline-flex items-center gap-1.5 text-xs font-medium text-primary bg-primary/10 border border-primary/20 rounded-full pl-2.5 pr-3 py-1.5">
+                      <Icon className="w-3.5 h-3.5 shrink-0" /> {c}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
           )}
 
           {/* Galería */}
           {media.length > 0 && (
             <div className="mb-8">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-foreground/50 mb-3">Galería</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className={`grid ${galleryCols} gap-3`}>
                 {media.map((m, i) => (
                   <button
                     key={i}
                     type="button"
                     onClick={() => onOpenMedia(i)}
-                    className="group relative aspect-square rounded-xl overflow-hidden bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     <img
                       src={m.tipo === 'video' ? m.poster : m.src}
@@ -533,13 +573,12 @@ const ProjectModal = ({ project, onClose, onOpenMedia }) => {
           {/* Video testimonio del dueño */}
           {project.testimonio && (
             <div className="mb-8">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-foreground/50 mb-3">Lo que dice el dueño</h3>
               <video
                 src={project.testimonio.src}
                 poster={project.testimonio.poster}
                 controls
                 playsInline
-                className="w-full rounded-xl bg-black"
+                className="block mx-auto w-auto max-w-full max-h-[70vh] rounded-xl bg-black"
               />
             </div>
           )}
