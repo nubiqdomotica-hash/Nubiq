@@ -260,10 +260,11 @@ const MobileCarousel = ({ projects, onOpen }) => {
               className="absolute w-[74%] max-w-[270px]"
               style={{ transformStyle: 'preserve-3d' }}
               animate={{
-                x: `${offset * 60}%`,
-                scale: isActive ? 1 : 0.82,
-                opacity: isActive ? 1 : 0.5,
+                x: `${offset * 62}%`,
+                scale: isActive ? 1 : 0.8,
+                opacity: isActive ? 1 : 0.3,
                 rotateY: offset * -16,
+                filter: isActive ? 'blur(0px)' : 'blur(3px)',
                 zIndex: 10 - Math.abs(offset),
               }}
               transition={{ type: 'spring', stiffness: 260, damping: 30 }}
