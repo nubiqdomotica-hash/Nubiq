@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -78,6 +78,38 @@ const iconForCategoria = (label) => {
   return Sparkles;
 };
 
+// ── Portada sin recorte ─────────────────────────────────────────────────────
+// Muestra la foto ENTERA (object-contain) y rellena el espacio sobrante con una
+// copia borrosa de la misma imagen. Así conviven portadas cuadradas, 4:5 y 9:16
+// sin que se corten cabezas ni se deformen. Los hijos (chips, gradiente, hover)
+// se dibujan por encima.
+const Cover = ({ src, alt, className = '', imgClassName = '', children }) => (
+  <div className={`relative overflow-hidden bg-muted ${className}`}>
+    {src ? (
+      <>
+        <img
+          src={src}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-45"
+        />
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          className={`relative z-[1] w-full h-full object-contain ${imgClassName}`}
+        />
+      </>
+    ) : (
+      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
+        <FolderOpen className="w-12 h-12 text-foreground/30" />
+      </div>
+    )}
+    {children}
+  </div>
+);
+
 // ── Tarjeta de un proyecto ──────────────────────────────────────────────────
 const ProjectCard = ({ project, index, onOpen, animateIn = true }) => {
   const cover = getCover(project);
@@ -92,28 +124,20 @@ const ProjectCard = ({ project, index, onOpen, animateIn = true }) => {
       whileInView={animateIn ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group w-full text-left bg-card/50 border border-white/10 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
+      className="group flex h-full w-full flex-col text-left bg-card/50 border border-white/10 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
     >
-      {/* Portada (formato vertical / retrato, 4:5) */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
-        {cover ? (
-          <img
-            src={cover}
-            alt={project.media?.[0]?.alt || project.titulo}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-            decoding="async"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
-            <FolderOpen className="w-12 h-12 text-foreground/30" />
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+      {/* Portada (formato retrato 4:5, foto entera sin recorte) */}
+      <Cover
+        src={cover}
+        alt={project.media?.[0]?.alt || project.titulo}
+        className="aspect-[4/5] w-full shrink-0"
+        imgClassName="transition-transform duration-500 group-hover:scale-[1.03]"
+      >
+        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black/60 via-transparent to-black/10" />
 
         {/* Contador de media */}
         {hasMedia && (
-          <div className="absolute top-3 right-3 flex gap-2">
+          <div className="absolute top-3 right-3 z-[3] flex gap-2">
             {fotos > 0 && (
               <span className="flex items-center gap-1 text-xs font-medium text-white bg-black/50 backdrop-blur-sm rounded-full px-2.5 py-1">
                 <ImageIcon className="w-3.5 h-3.5" /> {fotos}
@@ -128,15 +152,15 @@ const ProjectCard = ({ project, index, onOpen, animateIn = true }) => {
         )}
 
         {/* Indicador de "ver proyecto" en hover */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute inset-0 z-[3] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <span className="flex items-center gap-2 text-sm font-semibold text-white bg-primary/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
             <Play className="w-4 h-4" /> Ver proyecto
           </span>
         </div>
-      </div>
+      </Cover>
 
       {/* Texto */}
-      <div className="p-6">
+      <div className="flex flex-1 flex-col p-6">
         <h3 className="text-xl font-bold text-foreground mb-2">{project.titulo}</h3>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-foreground/60 mb-3">
           {project.ubicacion && (
@@ -153,6 +177,9 @@ const ProjectCard = ({ project, index, onOpen, animateIn = true }) => {
         {project.descripcion && (
           <p className="text-foreground/70 leading-relaxed line-clamp-2">{project.descripcion}</p>
         )}
+        <span className="mt-auto pt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary md:hidden">
+          Ver proyecto <ChevronRight className="w-4 h-4" />
+        </span>
       </div>
     </motion.button>
   );
@@ -233,64 +260,73 @@ const DesktopGrid = ({ projects, onOpen }) => {
   );
 };
 
-// ── Celular: carrusel tipo "coverflow" (de a uno, con los demás de fondo) ────
+// ── Celular: carrusel de deslizamiento suave (scroll nativo con "imán") ──────
+// Usa scroll-snap del navegador: se siente fluido y natural en el dedo, muestra
+// un anticipo de la tarjeta siguiente y nunca recorta la foto (gracias a Cover).
 const MobileCarousel = ({ projects, onOpen }) => {
+  const trackRef = useRef(null);
   const [index, setIndex] = useState(0);
   const total = projects.length;
 
-  const go = (dir) => setIndex((i) => Math.min(total - 1, Math.max(0, i + dir)));
-
-  const onDragEnd = (_e, info) => {
-    const umbral = 60; // cuánto hay que arrastrar para que pase al siguiente
-    if (info.offset.x < -umbral) go(1);
-    else if (info.offset.x > umbral) go(-1);
+  // Centra en pantalla la tarjeta i (al tocar flecha o punto).
+  const scrollTo = (i) => {
+    const track = trackRef.current;
+    const clamped = Math.min(total - 1, Math.max(0, i));
+    const child = track?.children[clamped];
+    if (!track || !child) return;
+    const left = child.offsetLeft - (track.clientWidth - child.clientWidth) / 2;
+    track.scrollTo({ left, behavior: 'smooth' });
   };
+
+  // Mientras el usuario desliza, detecta cuál tarjeta quedó más centrada.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const center = track.scrollLeft + track.clientWidth / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        for (let i = 0; i < track.children.length; i++) {
+          const c = track.children[i];
+          const dist = Math.abs(c.offsetLeft + c.clientWidth / 2 - center);
+          if (dist < bestDist) { bestDist = dist; best = i; }
+        }
+        setIndex(best);
+      });
+    };
+    track.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      track.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [total]);
 
   return (
     <div>
-      {/* Escenario 3D del carrusel (alto generoso para tarjetas verticales) */}
-      <div className="relative h-[540px] flex items-center justify-center overflow-hidden [perspective:1000px]">
-        {projects.map((project, i) => {
-          const offset = i - index;
-          if (Math.abs(offset) > 2) return null; // solo renderizo las cercanas
-          const isActive = offset === 0;
-          return (
-            <motion.div
-              key={project.slug}
-              className="absolute w-[74%] max-w-[270px]"
-              style={{ transformStyle: 'preserve-3d' }}
-              animate={{
-                x: `${offset * 62}%`,
-                scale: isActive ? 1 : 0.8,
-                opacity: isActive ? 1 : 0.3,
-                rotateY: offset * -16,
-                filter: isActive ? 'blur(0px)' : 'blur(3px)',
-                zIndex: 10 - Math.abs(offset),
-              }}
-              transition={{ type: 'spring', stiffness: 260, damping: 30 }}
-              drag={isActive ? 'x' : false}
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragEnd={isActive ? onDragEnd : undefined}
-            >
-              <ProjectCard
-                project={project}
-                index={0}
-                animateIn={false}
-                onOpen={isActive ? onOpen : () => setIndex(i)}
-              />
-            </motion.div>
-          );
-        })}
+      {/* Pista deslizable: cada tarjeta ocupa el 86% del ancho y se "imanta"
+          al centro. El padding lateral deja que la 1ª y la última se centren. */}
+      <div
+        ref={trackRef}
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-[7%] pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {projects.map((project) => (
+          <div key={project.slug} className="snap-center shrink-0 w-[86%]">
+            <ProjectCard project={project} index={0} animateIn={false} onOpen={onOpen} />
+          </div>
+        ))}
       </div>
 
       {/* Flechas + contador */}
       <div className="flex items-center justify-center gap-5 mt-8">
-        <button type="button" onClick={() => go(-1)} disabled={index === 0} aria-label="Proyecto anterior" className={FLECHA_CLASE}>
+        <button type="button" onClick={() => scrollTo(index - 1)} disabled={index === 0} aria-label="Proyecto anterior" className={FLECHA_CLASE}>
           <ChevronLeft className="w-5 h-5" />
         </button>
         <span className="text-sm font-medium text-foreground/60 tabular-nums select-none">{index + 1} / {total}</span>
-        <button type="button" onClick={() => go(1)} disabled={index === total - 1} aria-label="Proyecto siguiente" className={FLECHA_CLASE}>
+        <button type="button" onClick={() => scrollTo(index + 1)} disabled={index === total - 1} aria-label="Proyecto siguiente" className={FLECHA_CLASE}>
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
@@ -301,7 +337,7 @@ const MobileCarousel = ({ projects, onOpen }) => {
           <button
             key={p.slug}
             type="button"
-            onClick={() => setIndex(i)}
+            onClick={() => scrollTo(i)}
             aria-label={`Ir al proyecto ${i + 1}`}
             className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-primary' : 'w-2 bg-white/25'}`}
           />
@@ -495,17 +531,10 @@ const ProjectModal = ({ project, onClose, onOpenMedia }) => {
           <X className="w-5 h-5" />
         </button>
 
-        {/* Foto principal */}
-        <div className="relative h-60 sm:h-80 w-full bg-muted">
-          {cover ? (
-            <img src={cover} alt={media[0]?.alt || project.titulo} className="w-full h-full object-cover" />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
-              <FolderOpen className="w-14 h-14 text-foreground/30" />
-            </div>
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
-        </div>
+        {/* Foto principal (entera, sin recorte) */}
+        <Cover src={cover} alt={media[0]?.alt || project.titulo} className="h-64 sm:h-80 w-full">
+          <div className="absolute inset-0 z-[2] bg-gradient-to-t from-card via-card/40 to-transparent" />
+        </Cover>
 
         {/* Contenido */}
         <div className="px-6 sm:px-8 pb-8 -mt-12 relative">
