@@ -28,7 +28,7 @@ Soy [Nombre], de [Barrio o ciudad]. [Estoy en obra / remodelando / mi casa ya es
         <meta name="description" content="Contactanos por WhatsApp o email. Asesoramiento gratuito y sin compromiso. Instalación de domótica en hogares y oficinas en Córdoba, Argentina." />
         <meta property="og:title" content="Contacto | Presupuesto Domótica Gratis | Nubiq Córdoba" />
         <meta property="og:description" content="Contactanos por WhatsApp o email. Asesoramiento gratuito y sin compromiso. Instalación de domótica en Córdoba, Argentina." />
-        <link rel="canonical" href="https://nubiqdomotica.com.ar/contacto" />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/contacto/" />
       </Helmet>
       <SeoBreadcrumb items={[{ name: 'Contacto', path: '/contacto' }]} />
       <section className="text-center mb-12 md:mb-16">

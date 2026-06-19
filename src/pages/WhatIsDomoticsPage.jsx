@@ -63,7 +63,7 @@ const WhatIsDomoticsPage = () => {
         <meta name="description" content="Descubrí qué es la domótica, cómo funciona y cuáles son sus beneficios. Control por voz, ahorro energético, seguridad y más. Guía gratuita de Nubiq Córdoba." />
         <meta property="og:title" content="¿Qué es la Domótica? Guía Completa | Nubiq Argentina" />
         <meta property="og:description" content="Descubrí qué es la domótica, cómo funciona y cuáles son sus beneficios. Control por voz, ahorro energético, seguridad y más." />
-        <link rel="canonical" href="https://nubiqdomotica.com.ar/que-es-domotica" />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/que-es-domotica/" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",

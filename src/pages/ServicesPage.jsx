@@ -310,7 +310,7 @@ const ServicesPage = () => {
         <meta name="description" content="Iluminación inteligente, climatización, persianas automatizadas, cerraduras, cámaras, riego y audio. Instalación profesional de domótica en Córdoba, Argentina." />
         <meta property="og:title" content="Servicios de Domótica en Córdoba | Nubiq" />
         <meta property="og:description" content="Iluminación inteligente, climatización, persianas automatizadas, cerraduras, cámaras, riego y audio. Instalación profesional de domótica en Córdoba, Argentina." />
-        <link rel="canonical" href="https://nubiqdomotica.com.ar/servicios" />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/servicios/" />
       </Helmet>
       <SeoBreadcrumb items={[{ name: 'Servicios', path: '/servicios' }]} />
       <section className="text-center">

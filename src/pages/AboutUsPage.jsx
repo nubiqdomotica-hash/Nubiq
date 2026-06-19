@@ -39,7 +39,7 @@ const AboutUsPage = () => {
         <meta name="description" content="Somos Lucas y Franco, co-fundadores de Nubiq. Expertos en domótica residencial y comercial con Home Assistant en Córdoba, Argentina. Conocé nuestra misión y valores." />
         <meta property="og:title" content="Quiénes Somos | Nubiq Domótica Córdoba" />
         <meta property="og:description" content="Expertos en domótica residencial y comercial con Home Assistant en Córdoba, Argentina. Conocé nuestra misión y valores." />
-        <link rel="canonical" href="https://nubiqdomotica.com.ar/nosotros" />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/nosotros/" />
       </Helmet>
       <SeoBreadcrumb items={[{ name: 'Nosotros', path: '/nosotros' }]} />
       <section className="text-center">

@@ -129,7 +129,7 @@ const PartnersPage = () => {
           property="og:description"
           content="Diferenciá tu proyecto. Cerrá más rápido. Domótica acorde al ticket de tu obra, integrada a tu flujo de trabajo."
         />
-        <link rel="canonical" href="https://nubiqdomotica.com.ar/partners" />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/partners/" />
       </Helmet>
 
       {/* 1. HERO */}

@@ -608,6 +608,7 @@ const ProjectModal = ({ project, onClose, onOpenMedia }) => {
                 poster={project.testimonio.poster}
                 controls
                 playsInline
+                preload="none"
                 className="block mx-auto w-auto max-w-full max-h-[70vh] rounded-xl bg-black"
               />
             </div>
@@ -657,7 +658,7 @@ const ProyectosPage = () => {
         <meta name="description" content="Mirá proyectos reales de domótica premium en Córdoba: obras terminadas y en ejecución. Fotos y videos de casas inteligentes hechas por Nubiq." />
         <meta property="og:title" content="Proyectos de Domótica en Córdoba | Nubiq" />
         <meta property="og:description" content="Obras reales de domótica premium en Córdoba: proyectos terminados y en ejecución. Fotos y videos de casas inteligentes hechas por Nubiq." />
-        <link rel="canonical" href="https://nubiqdomotica.com.ar/proyectos" />
+        <link rel="canonical" href="https://nubiqdomotica.com.ar/proyectos/" />
       </Helmet>
 
       <SeoBreadcrumb items={[{ name: 'Proyectos', path: '/proyectos' }]} />

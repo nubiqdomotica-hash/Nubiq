@@ -17,7 +17,10 @@ const DIST = path.resolve(process.cwd(), 'dist');
 function customizeHtml(baseHtml, route) {
   // La ruta "/" ya existe como dist/index.html base, no se sobrescribe acá.
   let html = baseHtml;
-  const url = BASE_URL + route.path;
+  // GitHub Pages sirve cada ruta como directorio con barra final y hace 301
+  // de /servicios -> /servicios/. El canonical y og:url deben apuntar a la
+  // URL final (con barra) para evitar conflictos de canonicalizacion.
+  const url = BASE_URL + route.path + (route.path === '/' ? '' : '/');
 
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(route.title)}</title>`);
 

@@ -15,7 +15,7 @@ function buildSitemap() {
   const today = formatDate();
   const urls = routes
     .map((r) => {
-      const loc = `${BASE_URL}${r.path === '/' ? '/' : r.path}`;
+      const loc = `${BASE_URL}${r.path === '/' ? '/' : r.path + '/'}`;
       return `  <url>
     <loc>${loc}</loc>
     <lastmod>${today}</lastmod>

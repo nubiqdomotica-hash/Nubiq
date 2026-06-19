@@ -25,19 +25,20 @@ const NeighborhoodPage = ({
   testimonialAuthor,
   faqs
 }) => {
-  const url = `https://nubiqdomotica.com.ar/${slug}`;
+  const url = `https://nubiqdomotica.com.ar/${slug}/`;
   const title = `Domótica en ${neighborhood}, Córdoba | Casa Inteligente | Nubiq`;
   const description = `Instalación de domótica en ${neighborhood}, Córdoba. Casa inteligente sin obras: luces, clima, persianas, cámaras y cerraduras desde el celular. Asesoramiento gratuito.`;
 
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: `Nubiq Domótica - ${neighborhood}`,
+    '@id': 'https://nubiqdomotica.com.ar/#localbusiness',
+    name: 'Nubiq Domótica',
     description,
     url,
     telephone: '+54-351-232-6814',
     email: 'contacto@nubiqdomotica.com.ar',
-    priceRange: '$$',
+    priceRange: '$$$$',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Córdoba',
@@ -45,7 +46,11 @@ const NeighborhoodPage = ({
       addressCountry: 'AR'
     },
     areaServed: { '@type': 'Place', name: `${neighborhood}, Córdoba` },
-    image: 'https://nubiqdomotica.com.ar/og-image.png'
+    image: 'https://nubiqdomotica.com.ar/og-image.png',
+    sameAs: [
+      'https://www.instagram.com/nubiq.domotica',
+      'https://wa.me/5493512326814'
+    ]
   };
 
   const faqSchema = faqs && faqs.length > 0 ? {
