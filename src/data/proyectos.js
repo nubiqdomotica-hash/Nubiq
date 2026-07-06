@@ -10,7 +10,7 @@
 //       de cada línea y completá los datos.
 //    3. Poné las fotos y videos del proyecto en la carpeta:
 //          public/proyectos/<carpeta-del-proyecto>/
-//       y referencialos como '/proyectos/<carpeta>/archivo.jpg'.
+//       y referencialos como '/proyectos/<carpeta>/archivo.webp'.
 //
 //  (Si no sabés hacer esto, mandame las fotos, los videos y una descripción
 //   y yo lo cargo. — Claude)
@@ -32,11 +32,11 @@
 //               'Seguridad', 'Cortinas']. Opcional.
 //   testimonio  Video del dueño hablando de la obra (se muestra destacado).
 //               Ej: { src: '/proyectos/casa/testimonio.mp4',
-//                     poster: '/proyectos/casa/testimonio.jpg' }. Opcional.
+//                     poster: '/proyectos/casa/testimonio.webp' }. Opcional.
 //   media       Lista de fotos y videos. Cada item:
-//                 { tipo: 'imagen', src: '/proyectos/casa/foto.jpg', alt: 'descripción' }
+//                 { tipo: 'imagen', src: '/proyectos/casa/foto.webp', alt: 'descripción' }
 //                 { tipo: 'video',  src: '/proyectos/casa/video.mp4',
-//                   poster: '/proyectos/casa/portada.jpg', alt: 'descripción' }
+//                   poster: '/proyectos/casa/portada.webp', alt: 'descripción' }
 //               La primera IMAGEN de la lista se usa como portada de la tarjeta.
 //               Si está vacío ([]), la tarjeta muestra un recuadro gris hasta
 //               que carguemos el material.
@@ -54,9 +54,9 @@ export const proyectos = [
       'puesta en escena en una de las muestras de arquitectura y diseño más ' +
       'importantes del país.',
     media: [
-      { tipo: 'imagen', src: '/proyectos/casa-foa-2026-pocito/foto-1.jpg', alt: 'Espacio de Nubiq en Casa FOA 2026' },
-      { tipo: 'video', src: '/proyectos/casa-foa-2026-pocito/testimonio-gaby-kanter.mp4', poster: '/proyectos/casa-foa-2026-pocito/testimonio-gaby-kanter-poster.jpg', alt: 'Entrevista a Gaby Kanter en Casa FOA' },
-      { tipo: 'video', src: '/proyectos/casa-foa-2026-pocito/proceso-de-obra.mp4', poster: '/proyectos/casa-foa-2026-pocito/proceso-de-obra-poster.jpg', alt: 'Proceso de obra del espacio en Casa FOA' },
+      { tipo: 'imagen', src: '/proyectos/casa-foa-2026-pocito/foto-1.webp', alt: 'Espacio de Nubiq en Casa FOA 2026' },
+      { tipo: 'video', src: '/proyectos/casa-foa-2026-pocito/testimonio-gaby-kanter.mp4', poster: '/proyectos/casa-foa-2026-pocito/testimonio-gaby-kanter-poster.webp', alt: 'Entrevista a Gaby Kanter en Casa FOA' },
+      { tipo: 'video', src: '/proyectos/casa-foa-2026-pocito/proceso-de-obra.mp4', poster: '/proyectos/casa-foa-2026-pocito/proceso-de-obra-poster.webp', alt: 'Proceso de obra del espacio en Casa FOA' },
     ],
   },
   {
@@ -72,7 +72,7 @@ export const proyectos = [
       'maneja por voz, desde cualquier ambiente.',
     categorias: ['Iluminación', 'Sensores', 'Domótica local', 'Control por voz'],
     media: [
-      { tipo: 'imagen', src: '/proyectos/hogar-el-bosque-2/portada.jpg', alt: 'Frente de la casa de El Bosque 2' },
+      { tipo: 'imagen', src: '/proyectos/hogar-el-bosque-2/portada.webp', alt: 'Frente de la casa de El Bosque 2' },
     ],
   },
   {
@@ -94,8 +94,8 @@ export const proyectos = [
       'controla con un solo gesto.',
     categorias: ['Sonido HiFi Sonos'],
     media: [
-      { tipo: 'video', src: '/proyectos/hogar-el-terron-2/clip-1.mp4', poster: '/proyectos/hogar-el-terron-2/clip-1-poster.jpg', alt: 'Detalle de la casa de El Terrón 2' },
-      { tipo: 'video', src: '/proyectos/hogar-el-terron-2/clip-2.mp4', poster: '/proyectos/hogar-el-terron-2/clip-2-poster.jpg', alt: 'Detalle de la casa de El Terrón 2' },
+      { tipo: 'video', src: '/proyectos/hogar-el-terron-2/clip-1.mp4', poster: '/proyectos/hogar-el-terron-2/clip-1-poster.webp', alt: 'Detalle de la casa de El Terrón 2' },
+      { tipo: 'video', src: '/proyectos/hogar-el-terron-2/clip-2.mp4', poster: '/proyectos/hogar-el-terron-2/clip-2-poster.webp', alt: 'Detalle de la casa de El Terrón 2' },
     ],
   },
   {
@@ -112,8 +112,8 @@ export const proyectos = [
       'se interrumpa.',
     categorias: ['Iluminación', 'Caldera', 'Piscina', 'Riego inteligente', 'Cámaras', 'Pantalla de control', 'Control por voz', 'WiFi mesh'],
     media: [
-      { tipo: 'imagen', src: '/proyectos/hogar-el-bosque-1/portada.jpg', alt: 'Frente de la casa de El Bosque 1' },
-      { tipo: 'video', src: '/proyectos/hogar-el-bosque-1/recorrido.mp4', poster: '/proyectos/hogar-el-bosque-1/recorrido-poster.jpg', alt: 'Recorrido por la casa de El Bosque' },
+      { tipo: 'imagen', src: '/proyectos/hogar-el-bosque-1/portada.webp', alt: 'Frente de la casa de El Bosque 1' },
+      { tipo: 'video', src: '/proyectos/hogar-el-bosque-1/recorrido.mp4', poster: '/proyectos/hogar-el-bosque-1/recorrido-poster.webp', alt: 'Recorrido por la casa de El Bosque' },
     ],
   },
   {
@@ -142,8 +142,8 @@ export const proyectos = [
       'sin pensarlo.',
     categorias: ['Iluminación', 'Caldera', 'Piscina', 'Cerradura digital', 'Cámaras', 'Control por voz'],
     media: [
-      { tipo: 'video', src: '/proyectos/hogar-el-terron-1/trailer.mp4', poster: '/proyectos/hogar-el-terron-1/trailer-poster.jpg', alt: 'Trailer de la casa de El Terrón' },
-      { tipo: 'video', src: '/proyectos/hogar-el-terron-1/recorrido.mp4', poster: '/proyectos/hogar-el-terron-1/recorrido-poster.jpg', alt: 'Recorrido por la casa de El Terrón' },
+      { tipo: 'video', src: '/proyectos/hogar-el-terron-1/trailer.mp4', poster: '/proyectos/hogar-el-terron-1/trailer-poster.webp', alt: 'Trailer de la casa de El Terrón' },
+      { tipo: 'video', src: '/proyectos/hogar-el-terron-1/recorrido.mp4', poster: '/proyectos/hogar-el-terron-1/recorrido-poster.webp', alt: 'Recorrido por la casa de El Terrón' },
     ],
   },
   {
@@ -157,7 +157,7 @@ export const proyectos = [
       'más seguro, cómodo y eficiente, sin complicaciones.',
     categorias: ['Iluminación', 'Cerradura digital', 'Cámaras'],
     media: [
-      { tipo: 'video', src: '/proyectos/oficinas-inmobiliaria-bertero/recorrido.mp4', poster: '/proyectos/oficinas-inmobiliaria-bertero/recorrido-poster.jpg', alt: 'Recorrido por las oficinas de Inmobiliaria Bertero' },
+      { tipo: 'video', src: '/proyectos/oficinas-inmobiliaria-bertero/recorrido.mp4', poster: '/proyectos/oficinas-inmobiliaria-bertero/recorrido-poster.webp', alt: 'Recorrido por las oficinas de Inmobiliaria Bertero' },
     ],
   },
   {
@@ -173,10 +173,10 @@ export const proyectos = [
       'videovigilancia cuidan cada acceso. Todo en un solo sistema, simple de ' +
       'usar y pensado para el día a día.',
     categorias: ['Iluminación', 'Climatización', 'Piscina', 'Portones', 'Video portero', 'Cámaras', 'Pantalla táctil', 'Control por voz'],
-    testimonio: { src: '/proyectos/hogar-jesus-maria/testimonio.mp4', poster: '/proyectos/hogar-jesus-maria/testimonio-poster.jpg' },
+    testimonio: { src: '/proyectos/hogar-jesus-maria/testimonio.mp4', poster: '/proyectos/hogar-jesus-maria/testimonio-poster.webp' },
     media: [
-      { tipo: 'imagen', src: '/proyectos/hogar-jesus-maria/portada.jpg', alt: 'Frente de la casa de Jesús María' },
-      { tipo: 'video', src: '/proyectos/hogar-jesus-maria/demo.mp4', poster: '/proyectos/hogar-jesus-maria/demo-poster.jpg', alt: 'Recorrido por la casa de Jesús María' },
+      { tipo: 'imagen', src: '/proyectos/hogar-jesus-maria/portada.webp', alt: 'Frente de la casa de Jesús María' },
+      { tipo: 'video', src: '/proyectos/hogar-jesus-maria/demo.mp4', poster: '/proyectos/hogar-jesus-maria/demo-poster.webp', alt: 'Recorrido por la casa de Jesús María' },
     ],
   },
 
@@ -193,7 +193,7 @@ export const proyectos = [
       'Te mostramos cómo avanza la obra.',
     categorias: ['Iluminación', 'Climatización', 'Control por voz', 'Central domótica'],
     media: [
-      { tipo: 'video', src: '/proyectos/hogar-q2-2/recorrido.mp4', poster: '/proyectos/hogar-q2-2/recorrido-poster.jpg', alt: 'Recorrido de obra en Q2' },
+      { tipo: 'video', src: '/proyectos/hogar-q2-2/recorrido.mp4', poster: '/proyectos/hogar-q2-2/recorrido-poster.webp', alt: 'Recorrido de obra en Q2' },
     ],
   },
   {
@@ -212,7 +212,7 @@ export const proyectos = [
       'sin concesiones.',
     categorias: ['Iluminación', 'Climatización', 'Cortinas', 'Riego', 'Piscina', 'Portones', 'Cerraduras digitales', 'Cámaras', 'Sonido HiFi Sonos', 'Home cinema', 'WiFi profesional', 'Control por voz', 'Central domótica', 'UPS'],
     media: [
-      { tipo: 'video', src: '/proyectos/hogar-las-delicias-1/recorrido-de-obra.mp4', poster: '/proyectos/hogar-las-delicias-1/recorrido-de-obra-poster.jpg', alt: 'Recorrido de obra en Las Delicias' },
+      { tipo: 'video', src: '/proyectos/hogar-las-delicias-1/recorrido-de-obra.mp4', poster: '/proyectos/hogar-las-delicias-1/recorrido-de-obra-poster.webp', alt: 'Recorrido de obra en Las Delicias' },
     ],
   },
   {
@@ -228,8 +228,8 @@ export const proyectos = [
       'premium llevada a escala, sin perder el detalle.',
     categorias: ['Iluminación', 'Climatización', 'Cámaras', 'Control por voz', 'Central domótica'],
     media: [
-      { tipo: 'video', src: '/proyectos/housing-la-estancia-de-la-villa/recorrido.mp4', poster: '/proyectos/housing-la-estancia-de-la-villa/recorrido-poster.jpg', alt: 'Recorrido de obra en La Estancia de la Villa' },
-      { tipo: 'video', src: '/proyectos/housing-la-estancia-de-la-villa/recorrido-2.mp4', poster: '/proyectos/housing-la-estancia-de-la-villa/recorrido-2-poster.jpg', alt: 'Recorrido de obra en La Estancia de la Villa' },
+      { tipo: 'video', src: '/proyectos/housing-la-estancia-de-la-villa/recorrido.mp4', poster: '/proyectos/housing-la-estancia-de-la-villa/recorrido-poster.webp', alt: 'Recorrido de obra en La Estancia de la Villa' },
+      { tipo: 'video', src: '/proyectos/housing-la-estancia-de-la-villa/recorrido-2.mp4', poster: '/proyectos/housing-la-estancia-de-la-villa/recorrido-2-poster.webp', alt: 'Recorrido de obra en La Estancia de la Villa' },
     ],
   },
   {
@@ -255,7 +255,7 @@ export const proyectos = [
       'para una casa que va a responder a cada gesto.',
     categorias: ['Iluminación', 'Climatización', 'Control por voz', 'Central domótica'],
     media: [
-      { tipo: 'imagen', src: '/proyectos/hogar-q2-1/foto-1.jpg', alt: 'Obra en ejecución en Q2' },
+      { tipo: 'imagen', src: '/proyectos/hogar-q2-1/foto-1.webp', alt: 'Obra en ejecución en Q2' },
     ],
   },
 
@@ -273,11 +273,11 @@ export const proyectos = [
   //     'Domótica integral en obra nueva: iluminación, climatización, ' +
   //     'cortinas y seguridad integradas en un solo sistema.',
   //   categorias: ['Iluminación', 'Climatización', 'Cortinas', 'Seguridad'],
-  //   testimonio: { src: '/proyectos/casa-villa-allende/testimonio.mp4', poster: '/proyectos/casa-villa-allende/testimonio.jpg' },
+  //   testimonio: { src: '/proyectos/casa-villa-allende/testimonio.mp4', poster: '/proyectos/casa-villa-allende/testimonio.webp' },
   //   media: [
-  //     { tipo: 'imagen', src: '/proyectos/casa-villa-allende/living.jpg', alt: 'Living con iluminación inteligente' },
-  //     { tipo: 'imagen', src: '/proyectos/casa-villa-allende/cocina.jpg', alt: 'Cocina automatizada' },
-  //     { tipo: 'video',  src: '/proyectos/casa-villa-allende/recorrido.mp4', poster: '/proyectos/casa-villa-allende/living.jpg', alt: 'Recorrido del proyecto' },
+  //     { tipo: 'imagen', src: '/proyectos/casa-villa-allende/living.webp', alt: 'Living con iluminación inteligente' },
+  //     { tipo: 'imagen', src: '/proyectos/casa-villa-allende/cocina.webp', alt: 'Cocina automatizada' },
+  //     { tipo: 'video',  src: '/proyectos/casa-villa-allende/recorrido.mp4', poster: '/proyectos/casa-villa-allende/living.webp', alt: 'Recorrido del proyecto' },
   //   ],
   // },
 ];
