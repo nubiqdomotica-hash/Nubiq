@@ -238,7 +238,7 @@ const ServicesPage = () => {
       icon: <Wifi size={28} />,
       title: 'Redes WiFi Profesionales',
       description: 'Disfrutá de una conexión estable, rápida y con cobertura total en cada ambiente. Diseñamos redes WiFi de nivel profesional para hogares, oficinas y proyectos de alta exigencia.',
-      imageUrl: '/redes-wifi-profesionales.jpg',
+      imageUrl: '/redes-wifi-profesionales.webp',
       imageAlt: 'Rack de red profesional con cableado organizado y equipamiento de conectividad',
       features: [
         'Cobertura uniforme en toda la propiedad, sin zonas muertas ni cortes inesperados.',
@@ -253,7 +253,7 @@ const ServicesPage = () => {
       icon: <Speaker size={28} />,
       title: 'Sistema de Audio',
       description: 'Convertí cada ambiente en una experiencia sonora de primer nivel. Diseñamos sistemas de audio a medida para hogares, con sonido envolvente, distribución multiambiente y configuraciones de cine en casa con terminaciones premium.',
-      imageUrl: '/sistema-audio.jpg',
+      imageUrl: '/sistema-audio.webp',
       imageAlt: 'Sala de cine en casa con sistema de audio envolvente y parlantes distribuidos',
       features: [
         'Sistemas de sonido envolvente para livings, salas multimedia y espacios de entretenimiento.',
