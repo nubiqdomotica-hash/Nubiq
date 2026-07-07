@@ -39,10 +39,10 @@ export const routes = [
   },
   {
     path: '/que-es-domotica',
-    title: '¿Qué es la Domótica? Guía Completa | Nubiq Argentina',
-    description: 'Descubrí qué es la domótica, cómo funciona y cuáles son sus beneficios. Control por voz, ahorro energético, seguridad y más. Guía gratuita de Nubiq Córdoba.',
+    title: '¿Qué es la Domótica? Guía Completa | Nubiq Córdoba, Argentina',
+    description: 'Qué es la domótica, cómo funciona, qué se puede automatizar en una casa, beneficios y cuánto cuesta en Argentina. Guía completa de Nubiq, domótica premium en Córdoba.',
     h1: '¿Qué es la Domótica?',
-    body: 'La domótica es la tecnología que integra luces, clima, persianas, cámaras y cerraduras para controlarlos desde el celular, por voz o de forma automática según tus rutinas. Sirve para ganar confort, seguridad y ahorro de energía sin complicarte la vida. En esta guía explicamos qué es, cómo funciona, qué se puede automatizar en una casa y cómo se integra en una obra. En Nubiq diseñamos e instalamos domótica a medida en Córdoba, Argentina.',
+    body: 'La domótica es la tecnología que integra luces, clima, persianas, cámaras, cerraduras y audio en un solo sistema central, controlado desde el celular, por voz o de forma automática según tus rutinas. En esta guía explicamos qué es, cómo funciona una casa inteligente, qué se puede automatizar, sus beneficios, cuándo conviene instalarla (en obra o en una casa terminada) y cuánto cuesta la domótica en Argentina. En Nubiq diseñamos e instalamos domótica premium a medida en Córdoba, Argentina. No publicamos precios de lista: cada proyecto se cotiza a medida. Pedí tu asesoramiento sin compromiso.',
     priority: 0.8,
     changefreq: 'monthly',
   },
