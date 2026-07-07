@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import {
   Smartphone, Zap, Shield, Clock, Leaf, Sparkles,
   Lightbulb, Thermometer, Camera, Lock, Blinds, Droplets, Speaker, Wifi,
-  DollarSign, Calendar, HelpCircle, Home, Sun, ShieldCheck,
+  DollarSign, Calendar, HelpCircle, Home, Sun, ShieldCheck, ChevronDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -69,18 +69,6 @@ const AutomationItem = ({ icon, title, description }) => (
 
 // Preguntas frecuentes: fuente unica para el bloque visible y para el schema FAQ.
 const faqs = [
-  {
-    q: '¿Qué es la domótica?',
-    a: 'La domótica es la tecnología que integra y coordina los sistemas de una casa —iluminación, climatización, persianas, cerraduras, cámaras, audio y más— en un único sistema central. En lugar de manejar cada cosa por separado, controlás todo desde el celular, con la voz o de forma automática según tus rutinas.',
-  },
-  {
-    q: '¿Necesito hacer obras para instalar domótica?',
-    a: 'Depende del proyecto. Si tu casa está en obra o remodelación, integramos todo a medida desde el cableado y el resultado queda impecable, sin cables a la vista: es el mejor momento para hacerlo. Si tu casa ya está terminada, también se puede sumar domótica con soluciones pensadas para no romper de más.',
-  },
-  {
-    q: '¿Cuánto cuesta instalar domótica en Argentina?',
-    a: 'No hay un precio de lista, porque la domótica es un proyecto a medida: la inversión depende del tamaño de la casa, de los sistemas que quieras integrar, de la etapa de obra y de la calidad de los equipos. En Nubiq te asesoramos sin compromiso y armamos un presupuesto claro sobre lo que de verdad te sirve.',
-  },
   {
     q: '¿La domótica funciona si se corta internet?',
     a: 'Sí. El cerebro del sistema es local, es decir que vive dentro de tu casa. Las automatizaciones importantes —luces, seguridad, climatización— siguen funcionando aunque se caiga internet. La conexión solo hace falta para controlar la casa a distancia desde el celular.',
@@ -154,18 +142,6 @@ const WhatIsDomoticsPage = () => {
         >
           Es la tecnología que integra todo tu hogar —luces, clima, seguridad, cortinas, audio— en un solo sistema que controlás desde el celular, con la voz o de forma automática. Más que tecnología, es una forma de vivir tu casa: que se anticipe a vos y esté a la altura de lo que imaginaste.
         </motion.p>
-      </section>
-
-      {/* Definición */}
-      <section className="max-w-3xl mx-auto mb-12 md:mb-16">
-        <div className="bg-card border border-white/10 p-6 md:p-8 rounded-xl shadow-lg space-y-4 text-base md:text-lg text-foreground/80 leading-relaxed">
-          <p>
-            La palabra <strong>domótica</strong> viene de <em>domus</em> (hogar) y <em>automática</em>. En criollo: es hacer que tu casa piense y responda por vos. En lugar de manejar cada cosa por separado —una llave para la luz, un control para el aire acondicionado, otra app para las cámaras—, todos los sistemas se integran en un único cerebro central.
-          </p>
-          <p>
-            Desde ahí, tu casa entiende contextos: "es de noche y acabo de llegar", "salimos todos", "es hora de dormir", y actúa en consecuencia. No se trata de llenar la casa de aparatos: se trata de que la tecnología desaparezca y solo quede el resultado. Una casa más cómoda, más segura y más tuya.
-          </p>
-        </div>
       </section>
 
       {/* Cómo funciona */}
@@ -289,10 +265,10 @@ const WhatIsDomoticsPage = () => {
           >
             <div className="flex items-center mb-3">
               <Calendar className="w-6 h-6 text-primary mr-2" />
-              <h3 className="text-lg md:text-xl font-semibold">En obra o remodelación (el momento ideal)</h3>
+              <h3 className="text-lg md:text-xl font-semibold">En obra o remodelación</h3>
             </div>
             <p className="text-foreground/70 text-sm md:text-base leading-relaxed">
-              Cuando la casa está en construcción o reforma, se integra todo desde el cableado: el resultado queda impecable y la tecnología, invisible. Es el momento dorado. Si estás construyendo, es el mejor momento para pensarlo — después, algunas cosas se complican. Es acá donde está nuestro foco.
+              Cuando la casa está en construcción o reforma, se integra todo desde el cableado: el resultado queda impecable y la tecnología, invisible. Es el momento dorado. Si estás construyendo, es el mejor momento para pensarlo.
             </p>
           </motion.div>
           <motion.div
@@ -307,7 +283,7 @@ const WhatIsDomoticsPage = () => {
               <h3 className="text-lg md:text-xl font-semibold">En una casa ya terminada</h3>
             </div>
             <p className="text-foreground/70 text-sm md:text-base leading-relaxed">
-              Si ya vivís en tu casa, también se puede modernizar con soluciones pensadas para no romper de más. Se arranca por lo que más te importa y se puede ampliar con el tiempo. Contanos cómo es tu casa y vemos juntos qué conviene.
+              Si ya vivís en tu casa, también se puede modernizar con soluciones a medida. Se arranca por lo que más te importa y se puede ampliar con el tiempo. Contanos cómo es tu casa y vemos juntos qué conviene.
             </p>
           </motion.div>
         </div>
@@ -343,10 +319,14 @@ const WhatIsDomoticsPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.3) }}
-              className="bg-card border border-white/10 p-5 md:p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-base md:text-lg font-semibold mb-2">{f.q}</h3>
-              <p className="text-foreground/70 text-sm md:text-base leading-relaxed">{f.a}</p>
+              <details className="group bg-card border border-white/10 rounded-xl shadow-lg overflow-hidden">
+                <summary className="flex items-center justify-between gap-4 p-5 md:p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  <h3 className="text-base md:text-lg font-semibold">{f.q}</h3>
+                  <ChevronDown className="w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
+                </summary>
+                <p className="text-foreground/70 text-sm md:text-base leading-relaxed px-5 md:px-6 pb-5 md:pb-6">{f.a}</p>
+              </details>
             </motion.div>
           ))}
         </div>
