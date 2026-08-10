@@ -1,8 +1,11 @@
 // Prerender REAL por ruta: abre cada ruta en un navegador headless (puppeteer),
 // espera a que React pinte, normaliza las animaciones (opacity/transform) y
 // vuelca el HTML renderizado del <div id="root"> dentro del HTML de cada ruta.
+// Ademas copia al <head> los bloques JSON-LD que genera react-helmet-async
+// (BreadcrumbList, FAQPage, LocalBusiness por barrio): sin esto solo existen
+// despues de ejecutar JS, asi que Bing y los bots de IA nunca los ven.
 // Los meta tags por ruta se siguen resolviendo con string-replace (probado y
-// deterministico); el navegador solo aporta el CUERPO renderizado.
+// deterministico); el navegador aporta el CUERPO renderizado y el schema.
 //
 // RED DE SEGURIDAD: si el navegador no arranca o una ruta falla, se cae al
 // metodo anterior (root vacio, mismos meta tags) y el build sigue en 0. Nunca
@@ -73,6 +76,15 @@ function escapeHtml(str) {
 // interpreten como patrones especiales de String.replace.
 function injectBody(html, innerHtml) {
   return html.replace(/<div id="root">\s*<\/div>/, () => `<div id="root">${innerHtml}</div>`);
+}
+
+// Inyecta antes de </head> los bloques JSON-LD que Helmet genero en el navegador.
+// Se conserva el atributo data-rh de cada bloque: al montar React en el cliente,
+// Helmet reconoce esos tags como propios y los reemplaza en vez de duplicarlos.
+function injectJsonLd(html, blocks) {
+  if (!blocks || blocks.length === 0) return html;
+  const snippet = blocks.map((b) => `\t\t${b}\n`).join('');
+  return html.replace(/<\/head>/, () => `\n${snippet}\t</head>`);
 }
 
 // ── Mini-servidor estatico del dist/ con fallback SPA (sin dependencias) ─────
@@ -164,7 +176,17 @@ async function renderRoute(browser, url) {
     });
 
     const inner = await page.$eval('#root', (el) => el.innerHTML);
-    return inner && inner.trim().length > 0 ? inner : null;
+    if (!inner || inner.trim().length === 0) return null;
+
+    // Bloques JSON-LD puestos por react-helmet-async. Se identifican por
+    // data-rh="true"; el JSON-LD base de index.html no lo lleva, asi que
+    // no se recaptura ni se duplica.
+    const jsonLd = await page.$$eval(
+      'head script[type="application/ld+json"][data-rh="true"]',
+      (nodes) => nodes.map((n) => n.outerHTML)
+    );
+
+    return { inner, jsonLd };
   } finally {
     await page.close().catch(() => {});
   }
@@ -202,8 +224,8 @@ async function main() {
     for (const route of routes) {
       const url = `http://127.0.0.1:${port}${route.path}${route.path === '/' ? '' : '/'}`;
       try {
-        const inner = await renderRoute(browser, url);
-        if (inner) rendered.set(route.path, inner);
+        const result = await renderRoute(browser, url);
+        if (result) rendered.set(route.path, result);
         else console.warn(`[prerender] ${route.path}: sin contenido renderizado, uso fallback`);
       } catch (err) {
         console.warn(`[prerender] ${route.path}: fallo el render (${err.message}), uso fallback`);
@@ -219,12 +241,20 @@ async function main() {
   // Escribir todas las rutas (render real donde se pudo, fallback donde no).
   let full = 0;
   let empty = 0;
+  let schemaBlocks = 0;
+  let schemaRoutes = 0;
   for (const route of routes) {
     let html = routeHtml.get(route.path);
-    const inner = rendered.get(route.path);
-    if (inner) {
-      html = injectBody(html, inner);
+    const result = rendered.get(route.path);
+    if (result) {
+      html = injectBody(html, result.inner);
+      html = injectJsonLd(html, result.jsonLd);
       full++;
+      if (result.jsonLd.length > 0) {
+        schemaBlocks += result.jsonLd.length;
+        schemaRoutes++;
+        console.log(`[prerender] ${route.path}: ${result.jsonLd.length} bloque(s) JSON-LD al <head>`);
+      }
     } else {
       empty++;
     }
@@ -238,6 +268,7 @@ async function main() {
   }
 
   console.log(`[prerender] OK - ${full} rutas con cuerpo renderizado, ${empty} con fallback (de ${routes.length}).`);
+  console.log(`[prerender] schema - ${schemaBlocks} bloques JSON-LD inyectados en ${schemaRoutes} rutas.`);
 }
 
 main().catch((err) => {
